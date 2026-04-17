@@ -1,19 +1,67 @@
 ---
 const {product} = Astro.props;
+import '../../public/css/variabler.css'
 ---
 
 <article>
         <img src={product.image}>
-        <h3>{product.Title}</h3>
-        <p>{product.price},- kr</p>
+        <section class="card_description">
+            <section>
+       <h5>{product.brand}</h5>
+        <h3>{product.title}</h3>
+        <p>{product.type}</p>
+        </section>
+        <section class="price_section">
+        <h4>{product.price} kr</h4>
+        <h4 class="overstreget">{product.before_price} kr</h4>
+        </section>
+        </section>
+        
 </article>
 
 <style>
         article{
-                border: solid 1px;
                 padding: 1rem;
                 }
-                img {
-                        max-width: 100%;
-                }
+
+img {
+ max-width: 100%;
+}
+
+h2, h3, h4, h5, p {
+ font-family: var(--inter);
+  color: var(--text);
+ font-weight: 500;
+}
+
+
+
+h3, h5 {
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4, h5 {
+    font-size: 1.5rem;
+}
+
+p {
+  opacity: 0.5;  
+}
+
+.overstreget {
+    opacity: 0.5;
+    text-decoration-line: line-through;
+}
+
+.price_section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+
 </style>
