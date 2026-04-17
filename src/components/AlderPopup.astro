@@ -1,0 +1,263 @@
+---
+const {
+  delay = 2000,
+  title = "Bekræft din alder",
+  subtitle = "*Bekræftes igen med MitID inden checkout",
+  message = "Er du 18 eller ældre?",
+  followupTitle = "",
+  followupMessage = "Du kan desværre ikke fortsætte. Genindlæs siden, hvis du vil starte forfra.",
+} = Astro.props;
+---
+
+<div id="age-popup-overlay" class="overlay" hidden>
+  <div class="popup">
+    <div class="popup-content">
+      <h1 id="popup-title" class="popup-title">{title}</h1>
+      <p id="popup-subtitle" class="popup-subtitle">{subtitle}</p>
+      <h2 id="popup-message" class="popup-message">{message}</h2>
+    </div>
+
+    <div id="popup-actions" class="popup-actions">
+      <button id="popup-not-yet" class="btn btn-secondary" type="button"
+        >Ikke endnu</button
+      >
+      <button id="popup-yes" class="btn btn-primary" type="button">Ja</button>
+    </div>
+  </div>
+</div>
+
+<script
+  define:vars={{
+    delay,
+    title,
+    subtitle,
+    message,
+    followupTitle,
+    followupMessage,
+  }}
+>
+  const overlay = document.getElementById("age-popup-overlay");
+  const titleEl = document.getElementById("popup-title");
+  const subtitleEl = document.getElementById("popup-subtitle");
+  const messageEl = document.getElementById("popup-message");
+  const actionsEl = document.getElementById("popup-actions");
+  const yesBtn = document.getElementById("popup-yes");
+  const notYetBtn = document.getElementById("popup-not-yet");
+  const popupEl = document.querySelector(".popup");
+
+  let step = "initial";
+
+  function openPopup() {
+    overlay?.removeAttribute("hidden");
+    document.body.classList.add("popup-open");
+  }
+
+  function closePopup() {
+    if (!overlay) return;
+
+    overlay.classList.add("is-closing");
+    document.body.classList.remove("popup-open");
+
+    setTimeout(() => {
+      overlay.remove();
+    }, 350);
+  }
+
+  function showInitialStep() {
+    step = "initial";
+
+    popupEl?.classList.remove("followup");
+
+    if (titleEl) {
+      titleEl.textContent = title;
+      titleEl.hidden = false;
+    }
+
+    if (subtitleEl) {
+      subtitleEl.textContent = subtitle;
+      subtitleEl.hidden = false;
+    }
+
+    if (messageEl) messageEl.textContent = message;
+    if (actionsEl) actionsEl.hidden = false;
+  }
+
+  function showFollowupStep() {
+    step = "followup";
+
+    popupEl?.classList.add("followup");
+
+    if (titleEl) {
+      titleEl.textContent = followupTitle;
+      titleEl.hidden = !followupTitle;
+    }
+    subtitleEl.style.display = "none";
+    if (messageEl) messageEl.textContent = followupMessage;
+    actionsEl.style.display = "none";
+  }
+
+  const timer = setTimeout(() => {
+    showInitialStep();
+    openPopup();
+  }, delay);
+
+  yesBtn?.addEventListener("click", () => {
+    if (step !== "initial") return;
+
+    clearTimeout(timer);
+    closePopup();
+  });
+
+  notYetBtn?.addEventListener("click", () => {
+    if (step !== "initial") return;
+
+    clearTimeout(timer);
+    showFollowupStep();
+  });
+</script>
+
+<style>
+  :global(body.popup-open) {
+    overflow: hidden;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 9999;
+  }
+  .overlay.is-closing {
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+
+  .popup {
+    width: min(100%, 15rem);
+    height: 15rem;
+    border-radius: 12px;
+    background-image: url(src/assets/alderpopupbg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .popup-content {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .popup-title {
+    color: #2f3e2f;
+    padding-top: 3rem;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .popup-subtitle {
+    color: rgb(47, 62, 47, 0.99);
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  .popup-message {
+    color: #2f3e2f;
+    padding-top: 0.75rem;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .popup-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+  .popup.followup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn {
+    height: max-content;
+    width: 100px;
+    border: 0;
+    border-radius: 7px;
+    padding: 0.75rem 0.5rem;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: #d1a95f;
+    border: 2px solid #d1a95f;
+  }
+
+  .btn-primary {
+    box-sizing: border-box;
+    background: #2f3e2f;
+    border: 2px solid #2f3e2f;
+    color: #f1ebdf;
+    font-weight: 900;
+    transition: 0.3s;
+  }
+
+  .btn-secondary {
+    height: min-content;
+    box-sizing: border-box;
+    background: transparent;
+    color: #2f3e2f;
+    border: 2px solid #2f3e2f;
+    font-weight: 900;
+    transition: 0.3s;
+  }
+  .btn-secondary:hover {
+    color: #d1a95f;
+    border: 2px solid #d1a95f;
+  }
+
+  @media (min-width: 800px) {
+    .popup {
+      width: min(100%, 20rem);
+      height: 15rem;
+      padding: 2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-content {
+      gap: 0.5rem;
+    }
+
+    .popup-title {
+      padding-top: 3rem;
+
+      font-size: 1.75rem;
+    }
+    .popup-subtitle {
+      font-size: 1rem;
+    }
+
+    .popup-message {
+      padding-top: 0.75rem;
+
+      font-size: 2rem;
+    }
+
+    .popup-actions {
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+    .btn {
+      height: min-content;
+      min-width: 140px;
+    }
+  }
+</style>
