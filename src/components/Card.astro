@@ -1,0 +1,19 @@
+---
+const {product} = Astro.props;
+---
+
+<article>
+        <img src={product.image}>
+        <h3>{product.Title}</h3>
+        <p>{product.price},- kr</p>
+</article>
+
+<style>
+        article{
+                border: solid 1px;
+                padding: 1rem;
+                }
+                img {
+                        max-width: 100%;
+                }
+</style>

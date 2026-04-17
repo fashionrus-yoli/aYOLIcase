@@ -1,0 +1,36 @@
+---
+//@ts-nocheck
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
+
+const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
+
+const options = {
+    method:"GET",
+    headers: {
+        apikey: key,
+    },
+};
+
+const data = await fetch(endpoint, options).then((response) => response.json());
+console.log(data);
+
+---
+
+<Layout>
+    <h2>Products</h2>
+    <section>
+    {data.map((product)=><Card {product}/>)}
+   </section> 
+</Layout>
+
+<style>
+section {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+}
+</style>
