@@ -1,0 +1,171 @@
+---
+import '../../public/css/variabler.css';
+import Logo from '../assets/logo_gold.svg';
+import ArrowBig from '../assets/ArrowBig.svg';
+---
+
+<footer>
+    <section class="text">
+    <Logo/>
+    <h2>Less waste, great taste</h2>
+    <p>Giv en overskydende øl fra bryggerier endnu en chance, til en skarp pris</p>
+    <p>Vi forbinder bæredygtighed med smag ved at mindske spild og sikre, at god øl bliver nydt - ikke hældt ud.</p>
+    </section>
+    <section>
+        <h3>Shop</h3>
+        <ul>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+        </ul>
+    </section>
+    <section>
+        <h3>Kundeservice</h3>
+        <ul>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+        </ul>
+    </section>
+    <section>
+        <h3>Om os</h3>
+        <ul>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+            <li><a href="/">Underkategori</a></li>
+        </ul>
+    </section>
+    <section>
+        <h3>Nyhedsbrev</h3>
+        <form class="newsletter">
+            <!-- Email input -->
+            <label for="email">Få besked når ny øl lander.</label>
+            <div class="email">
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Din e-mail"
+                    required
+                >
+                <!-- Submit button -->
+                <button type="submit"><ArrowBig/></button>
+            </div>
+
+            <!-- Checkbox -->
+            <label class="checkbox">
+                <input type="checkbox" required>
+                Jeg accepterer at modtage nyhedsbrev
+            </label>
+        </form>
+    </section>
+</footer>
+
+<style>
+    body{
+        font-family: var(--inter);
+        color: var(--white) ;
+        font-size: 14px;
+    }
+
+    h2{
+        color: var(--dark_yellow);
+    }
+
+    p, a, label, .checkbox{
+        font-size: 12px;
+    }
+
+    a{
+        text-decoration: none;
+        color: var(--white) ;
+        position: relative;
+    }
+
+    a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background: var(--white);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    a:hover::after {
+        transform: scaleX(1);
+    }
+
+    footer{
+        background-color: var(--darkest_green);
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        padding: 3rem;
+        gap: 3rem;
+    }
+
+    .text{
+        grid-column: 1/4;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li{
+        list-style: none;
+        text-align: left;
+        padding: 0.3rem 0;
+    }
+
+    input:focus, button:focus {
+        outline: 2px solid var(--light_green);
+        outline-offset: -2px;
+    }
+
+    .email {
+        display: flex;
+        flex-direction: row;
+        padding: 0.5rem 0;
+    }
+
+    .email input {
+        background-color:#3D503D ;
+        color: var(--white);
+        border: #1F2A30 solid 2px;
+        border-radius: 7px 0 0 7px;
+        padding: 0.7rem;
+        cursor: text;
+    }
+
+    .email button{
+        background-color: var(--dark_yellow);
+        border: #1F2A30 solid 2px;
+        border-radius: 0 7px 7px 0;
+        padding: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .cehckbox{
+        cursor: pointer;
+    }
+
+    .checkbox input{
+        accent-color: var(--dark_yellow);
+    }
+
+</style>
