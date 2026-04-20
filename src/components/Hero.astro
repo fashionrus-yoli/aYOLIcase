@@ -1,0 +1,69 @@
+---
+const {title, subtitle} = Astro.props;
+
+---
+
+<article class="hero">
+  <div class="hero-indhold">
+     <h1>{title}</h1>
+    <div class="hero-tekst">
+      <p>{subtitle}</p>
+      <a class="hero-knap" href="list">Se udvalg</a>
+    </div>
+  </div>
+</article>
+
+
+<style>
+
+
+.hero{
+    background-image:url("/src/assets/humle.webp");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    height: 90vh;
+    }
+
+.hero-indhold{
+   
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.hero-indhold h1{
+    color: #EBEBD0;
+    font-size: 110px;
+    font-family: 'Rammetto One', sans-serif;
+    max-width: 950px;
+    padding-left: 5rem;
+    grid-row: 1/-2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    line-height: 120%;
+}
+
+.hero-tekst{
+    color: #FFFBF2;
+    padding-left: 5rem;
+    font-size: 2rem;
+    max-width: 350px;
+    grid-row: 3;
+}
+
+.hero-knap{
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.6rem;
+    background-color: #2f3e2c;
+    color: #FFFBF2;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 7px;
+    transition: 0.2s ease;
+}
+.hero-knap:hover {
+    background-color: #d1a95f;
+    transform: translateY(-2px);
+}
+</style>
