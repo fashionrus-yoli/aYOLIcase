@@ -1,0 +1,37 @@
+---
+import '../../public/css/variabler.css'
+const { size = "large", text = "Tilføj til kurv" } = Astro.props;
+---
+
+<button class={size}>
+  {text}
+</button>
+
+<style>
+  button {
+    background-color: var(--darkest_green);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Gør farveskiftet blødt */
+    font-family: var(--inter);
+    border-radius: 7px;
+    
+  }
+
+  button:hover {
+    background-color: var(--light_yellow);
+  }
+
+  .large {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* Variant: Lille knap (standard) 
+  .small {
+    width: auto;
+    min-width: 120px;
+  }*/
+</style>

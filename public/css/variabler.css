@@ -1,0 +1,17 @@
+* {
+  /* colors */
+  --white: #fffbf2;
+  --off_white: #d4d4b2;
+  --light_yellow: #ffd68b;
+  --dark_yellow: #d1a95f;
+  --light_green: #a9ba7c;
+  --medium_green: #798357;
+  --darkest_green: #2f3e2f;
+  --grey: #696762;
+  --text: #3a3a3a;
+
+  /* font */
+  --h1: "Rammetto One", sans-serif;
+  --inter: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}

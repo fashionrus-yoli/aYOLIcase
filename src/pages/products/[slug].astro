@@ -1,0 +1,49 @@
+---
+//@ts-nocheck
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+    const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
+    const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
+    const options = {
+        headers: { apikey: key },
+    };
+
+    const products = await fetch(endpoint, options).then((res) => res.json());
+
+   
+    return products.map((product) => ({
+        params: { slug: product.id.toString() },
+        props: { product }, 
+    }));
+}
+
+
+const { product } = Astro.props;
+---
+
+<Layout title={product.title}>
+  <main>
+    <section class="product_detail">
+        <img src={product.image} alt={product.title} />
+        <div>
+            <h5>{product.brand}</h5>
+            <h1>{product.title}</h1>
+            <p class="type">{product.type}</p>
+            <p class="description">{product.description}</p>
+            <p class="price">{product.price} kr</p>
+            <!-- Her kan du genbruge din Button komponent -->
+        </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+    
+    .product_detail {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        padding: 2rem;
+    }
+</style>
