@@ -14,37 +14,83 @@ const {title, subtitle} = Astro.props;
 </article>
 
 
+
 <style>
+  .hero {
+    background-image: url("/src/assets/humle.webp");
+    background-size: cover;
+    background-position: center;
+    padding: 4rem 1.5rem;
+}
+
+/* SIMPEL STACK */
+.hero-indhold {
+    display: flex;
+    flex-direction: column;
+}
+
+/* H1 */
+.hero-indhold h1 {
+    font-size: 35px;
+    font-family: var(--h1);
+    color: #EBEBD0;
+    line-height: 1.2;
+    max-width: 400px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+/* TEKST */
+.hero-tekst {
+    margin-top: 1rem;
+    font-family: var(--inter);
+    color: var(--white);
+    font-size: 1.2rem;
+    max-width: 250px;
+}
+
+/* KNAP */
+.hero-knap {
+    display: inline-block;
+    
+    padding: 0.8rem 0.8rem;
+
+    background-color: #2f3e2c;
+    color: #FFFBF2;
+
+    text-decoration: none;
+    border-radius: 7px;
+}
 
 
+@media screen and (min-width: 1000px) {
 .hero{
     background-image:url("/src/assets/humle.webp");
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
-    height: 90vh;
+    height: 85vh;
     }
 
 .hero-indhold{
-   
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
 }
 
 .hero-indhold h1{
-    color: #EBEBD0;
     font-size: 110px;
-    font-family: 'Rammetto One', sans-serif;
-    max-width: 950px;
+    font-family: var(--h1);
+    color: #EBEBD0;
     padding-left: 5rem;
     grid-row: 1/-2;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
     line-height: 120%;
+    max-width: 950px;
 }
 
 .hero-tekst{
-    color: #FFFBF2;
+    color: var(--white);
+    font-family: var(--inter);
     padding-left: 5rem;
     font-size: 2rem;
     max-width: 350px;
@@ -53,7 +99,7 @@ const {title, subtitle} = Astro.props;
 
 .hero-knap{
     margin-top: 1.5rem;
-    padding: 0.8rem 1.6rem;
+    padding: 1rem 1rem;
     background-color: #2f3e2c;
     color: #FFFBF2;
     text-decoration: none;
@@ -65,5 +111,6 @@ const {title, subtitle} = Astro.props;
 .hero-knap:hover {
     background-color: #d1a95f;
     transform: translateY(-2px);
-}
+}}
+
 </style>
