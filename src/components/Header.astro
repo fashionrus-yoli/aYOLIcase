@@ -1,0 +1,249 @@
+---
+import Logo from '../assets/logo.svg';
+import Arrow from '../assets/arrow.svg';
+import Search from '../assets/search.svg';
+import Profile from '../assets/profile.svg';
+import Bag from '../assets/bag.svg';
+---
+
+<nav class="nav">
+    <!-- LOGO -->
+  <div class="logo">
+    <a href="/">
+        <Logo/>  
+    </a>
+  </div>
+
+  <!-- MENU -->
+  <ul class="menu">
+    <li class="dropdown">
+        <!-- SHOP -->
+      <a href="#">
+        <div class="arrow-add">
+            <p>Shop</p>
+            <Arrow/>
+        </div>
+      </a>
+      <!-- SHOP DROPDOWN -->
+      <ul class="submenu">
+        <li><a href="#">Alle øl</a></li>
+        <li class="dropdown">
+          <a href="#">
+            <div class="arrow-add">
+                <p>IPA / Pale ale</p>
+                <Arrow/>
+            </div>
+        </a>
+          <!-- IPA / PALE ALE DROPDOWN -->
+            <ul class="submenu">
+                <li><a href="#">Alle Pale ale</a></li>
+                <li><a href="#">Alle IPA</a></li>
+                <li><a href="#">Session IPA</a></li>
+                <li><a href="#">Double IPA</a></li>
+                <li><a href="#">Triple IPA</a></li>
+                <li><a href="#">Pale ale med kort dato</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">
+                <div class="arrow-add">
+                    <p>Lager / Pilsner</p>
+                    <Arrow/>
+            </div>
+            </a>
+            <!-- LAGER / PILSNER DROPDOWN -->
+            <ul class="submenu">
+                <li><a href="#">Alle lager / pilsner</a></li>
+                <li><a href="#">Lager</a></li>
+                <li><a href="#">Pilsner</a></li>
+                <li><a href="#">Bock</a></li>
+                <li><a href="#">Lager / Pilsner med kort dato</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">
+                <div class="arrow-add">
+                <p>Det syrlige</p>
+                <Arrow/>
+            </div>
+            </a>
+            <!-- DET SYRLIGE DROPDOWN -->
+            <ul class="submenu">
+                <li><a href="#">Alle Syrlige</a></li>
+                <li><a href="#">Stout ale</a></li>
+                <li><a href="#">Berlin weisse</a></li>
+                <li><a href="#">Det syrlige med kort dato</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">
+                <div class="arrow-add">
+                <p>Det mørke</p>
+                <Arrow/>
+            </div>
+            </a>
+            <!-- DET MØRKKE DROPDOWN -->
+            <ul class="submenu">
+                <li><a href="#">Alle mørke</a></li>
+                <li><a href="#">Ale</a></li>
+                <li><a href="#">Brown ale</a></li>
+                <li><a href="#">Stout</a></li>
+                <li><a href="#">Porter</a></li>
+                <li><a href="#">Barley wine</a></li>
+                <li><a href="#">Det mørke med kort dato</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">
+                <div class="arrow-add">
+                <p>Det lyse</p>
+                <Arrow/>
+            </div>
+            </a>
+            <!-- DET LYSE DROPDOWN -->
+            <ul class="submenu">
+                <li><a href="#">Alle lyse</a></li>
+                <li><a href="#">Alle hvedeøl</a></li>
+                <li><a href="#">Blonde</a></li>
+                <li><a href="#">Tripel</a></li>
+                <li><a href="#">Det lyse med kort dato</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">
+                <div class="arrow-add">
+                <p>Alkoholfri</p>
+                <Arrow/>
+            </div>
+            </a>
+            <!-- ALKOHOLFRI DROPDOWN -->
+            <ul class="submenu">
+                <li><a href="#">Alle alkoholfri</a></li>
+                <li><a href="#">Alkoholfri med kort dato</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Fadøl og fadølsanlæg</a></li>
+        <li><a href="#">Perfekt til gave</a></li>
+        <li><a href="#">Offers</a></li>
+      </ul>
+    </li>
+    <!-- NYHEDER -->
+    <li><a href="#">Nyheder</a></li>
+    <!-- TASTE CASE -->
+    <li class="dropdown">
+        <a href="#">
+            <div class="arrow-add">
+                <p>Taste case</p>
+                <Arrow/>
+            </div>
+        </a>
+        <!-- TASTE CASE DROPDOWN -->
+        <ul class="submenu">
+            <li><a href="#">Alle taste case</a></li>
+            <li><a href="#">Månedens taste case</a></li>
+            <li><a href="#">IPA taste</a></li>
+            <li><a href="#">Lager pils taste</a></li>
+            <li><a href="#">Stout taste</a></li>
+            <li><a href="#">Taste case abonnement</a></li>
+        </ul>
+        </li>
+    <!-- ØLSMAGNING -->
+    <li><a href="#">Ølsmagning</a></li>
+    <!-- ERHVERV -->
+    <li><a href="#">Erhvev</a></li>
+    <!-- OM OS -->
+    <li><a href="#">Om os</a></li>
+  </ul>
+
+  <!-- ICONS -->
+  <div class="nav-icons">
+    <div class="search">
+        <Search/>
+    </div>
+    <div class="profile">
+        <Profile/>
+    </div>
+    <div class="bag">
+        <Bag/>
+    </div>
+  </div>
+</nav>
+
+<style>
+    /* put this in general */
+    body{
+        font-family: helvetica neue;
+    }
+    a{
+        text-decoration: none;
+    }
+
+    .arrow-add{
+        display: flex;
+        align-items: center;
+        gap: 0 0.5rem;
+        height: 100%;
+    }
+
+    .nav{
+        display: flex;
+        /* change color */
+        background-color: #EBEBD0;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 3rem;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        list-style: none;
+    }
+
+    .menu li {
+        position: relative;
+    }
+
+    .submenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        /* change color */
+        background: #EBEBD0;
+        list-style: none;
+        padding: 2rem;
+        border-radius: 7px;
+        width: 220px;
+
+        /* animation */
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+
+        transition: all 0.2s ease;
+    }
+
+    .dropdown:hover > .submenu {
+        /* animation */
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+/* 
+    .submenu li{
+        padding: 0.5rem;
+    } */
+
+    .submenu .submenu {
+        top: 0;
+        left: 100%;
+        padding: 2rem 2rem 2rem 4rem;
+    }
+
+    .nav-icons{
+        display: flex;
+        justify-content: space-between;
+        width: 160px;
+    }
+</style>
