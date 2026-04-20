@@ -1,4 +1,6 @@
 ---
+import "../../public/css/variabler.css";
+
 const {
   delay = 2000,
   title = "Bekræft din alder",
@@ -19,7 +21,7 @@ const {
 
     <div id="popup-actions" class="popup-actions">
       <button id="popup-not-yet" class="btn btn-secondary" type="button"
-        >Ikke endnu</button
+        >Nej</button
       >
       <button id="popup-yes" class="btn btn-primary" type="button">Ja</button>
     </div>
@@ -137,7 +139,7 @@ const {
   }
 
   .popup {
-    width: min(100%, 15rem);
+    width: min(100%, 20rem);
     height: 15rem;
     border-radius: 12px;
     background-image: url(src/assets/alderpopupbg.svg);
@@ -159,11 +161,13 @@ const {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
+    font-family: var(--inter);
   }
   .popup-subtitle {
     color: rgb(47, 62, 47, 0.99);
     margin: 0;
     font-size: 0.8rem;
+    font-family: var(--inter);
   }
 
   .popup-message {
@@ -171,6 +175,7 @@ const {
     padding-top: 0.75rem;
     margin: 0;
     font-size: 1.5rem;
+    font-family: var(--inter);
   }
 
   .popup-actions {
@@ -194,6 +199,7 @@ const {
     padding: 0.75rem 0.5rem;
     font: inherit;
     cursor: pointer;
+    font-family: var(--inter);
   }
 
   .btn-primary:hover {
@@ -206,7 +212,7 @@ const {
     background: #2f3e2f;
     border: 2px solid #2f3e2f;
     color: #f1ebdf;
-    font-weight: 900;
+    font-weight: 500;
     transition: 0.3s;
   }
 
@@ -216,7 +222,7 @@ const {
     background: transparent;
     color: #2f3e2f;
     border: 2px solid #2f3e2f;
-    font-weight: 900;
+    font-weight: 500;
     transition: 0.3s;
   }
   .btn-secondary:hover {
@@ -226,7 +232,7 @@ const {
 
   @media (min-width: 800px) {
     .popup {
-      width: min(100%, 20rem);
+      width: min(100%, 25rem);
       height: 15rem;
       padding: 2rem;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
