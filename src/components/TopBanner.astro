@@ -1,0 +1,35 @@
+---
+import '../../public/css/variabler.css';
+import Star from '../assets/Star.svg';
+---
+
+<section>
+    <p>Fri fragt over 499kr.- (ex. pant)</p>
+    <p>Hurtig levering</p>
+    <p>Prisgaranti</p>
+    <div>
+        <Star/>
+        <p>4.8 på Trustpilot</p>
+    </div>  
+</section>
+
+<style>
+    section{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10rem;
+        background-color: var(--darkest_green);
+        color: var(--dark_yellow);
+        font-family: var(--inter);
+        font-size: 12px;
+    }
+
+    section div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.4rem;
+        }
+</style>

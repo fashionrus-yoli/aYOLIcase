@@ -1,4 +1,5 @@
 ---
+import '../../public/css/variabler.css';
 import Logo from '../assets/logo.svg';
 import Arrow from '../assets/arrow.svg';
 import Search from '../assets/search.svg';
@@ -15,174 +16,160 @@ import Bag from '../assets/bag.svg';
   </div>
 
   <!-- MENU -->
-  <ul class="menu">
-    <li class="dropdown">
-        <!-- SHOP -->
-      <a href="#">
-        <div class="arrow-add">
-            <p>Shop</p>
+    <ul class="menu">
+        <li class="dropdown">
+            <!-- SHOP -->
+            <a href="/list">Shop</a>
             <Arrow/>
-        </div>
-      </a>
-      <!-- SHOP DROPDOWN -->
-      <ul class="submenu">
-        <li><a href="#">Alle øl</a></li>
-        <li class="dropdown">
-          <a href="#">
-            <div class="arrow-add">
-                <p>IPA / Pale ale</p>
-                <Arrow/>
-            </div>
-        </a>
-          <!-- IPA / PALE ALE DROPDOWN -->
+        <!-- SHOP DROPDOWN -->
             <ul class="submenu">
-                <li><a href="#">Alle Pale ale</a></li>
-                <li><a href="#">Alle IPA</a></li>
-                <li><a href="#">Session IPA</a></li>
-                <li><a href="#">Double IPA</a></li>
-                <li><a href="#">Triple IPA</a></li>
-                <li><a href="#">Pale ale med kort dato</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">
-                <div class="arrow-add">
-                    <p>Lager / Pilsner</p>
+                <li><a href="/list">Alle øl</a></li>
+                <li class="dropdown">
+                    <a href="/list">IPA / Pale ale</a>
                     <Arrow/>
-            </div>
-            </a>
-            <!-- LAGER / PILSNER DROPDOWN -->
-            <ul class="submenu">
-                <li><a href="#">Alle lager / pilsner</a></li>
-                <li><a href="#">Lager</a></li>
-                <li><a href="#">Pilsner</a></li>
-                <li><a href="#">Bock</a></li>
-                <li><a href="#">Lager / Pilsner med kort dato</a></li>
+                <!-- IPA / PALE ALE DROPDOWN -->
+                    <ul class="submenu">
+                        <li><a href="/list">Alle Pale ale</a></li>
+                        <li><a href="/list">Alle IPA</a></li>
+                        <li><a href="/list">Session IPA</a></li>
+                        <li><a href="/list">Double IPA</a></li>
+                        <li><a href="/list">Triple IPA</a></li>
+                        <li><a href="/list">Pale ale med kort dato</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/list">Lager / Pilser</a>
+                    <Arrow/>
+                <!-- LAGER / PILSNER DROPDOWN -->
+                    <ul class="submenu">
+                        <li><a href="/list">Alle lager / pilsner</a></li>
+                        <li><a href="/list">Lager</a></li>
+                        <li><a href="/list">Pilsner</a></li>
+                        <li><a href="/list">Bock</a></li>
+                        <li><a href="/list">Lager / Pilsner med kort dato</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/list">Det syrlige</a>
+                    <Arrow/>
+                <!-- DET SYRLIGE DROPDOWN -->
+                    <ul class="submenu">
+                        <li><a href="/list">Alle Syrlige</a></li>
+                        <li><a href="/list">Stout ale</a></li>
+                        <li><a href="/list">Berlin weisse</a></li>
+                        <li><a href="/list">Det syrlige med kort dato</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/list">Det mørke</a>
+                    <Arrow/>
+                <!-- DET MØRKKE DROPDOWN -->
+                    <ul class="submenu">
+                        <li><a href="/list">Alle mørke</a></li>
+                        <li><a href="/list">Ale</a></li>
+                        <li><a href="/list">Brown ale</a></li>
+                        <li><a href="/list">Stout</a></li>
+                        <li><a href="/list">Porter</a></li>
+                        <li><a href="/list">Barley wine</a></li>
+                        <li><a href="/list">Det mørke med kort dato</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/list">Det lyse</a>
+                    <Arrow/>
+                <!-- DET LYSE DROPDOWN -->
+                    <ul class="submenu">
+                        <li><a href="/list">Alle lyse</a></li>
+                        <li><a href="/list">Alle hvedeøl</a></li>
+                        <li><a href="/list">Blonde</a></li>
+                        <li><a href="/list">Tripel</a></li>
+                        <li><a href="/list">Det lyse med kort dato</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/list">Alkoholfri</a>
+                    <Arrow/>
+                <!-- ALKOHOLFRI DROPDOWN -->
+                    <ul class="submenu">
+                        <li><a href="/list">Alle alkoholfri</a></li>
+                        <li><a href="/list">Alkoholfri med kort dato</a></li>
+                    </ul>
+                </li>
+                <li><a href="/list">Fadøl og fadølsanlæg</a></li>
+                <li><a href="/list">Perfekt til gave</a></li>
+                <li><a href="/list">Offers</a></li>
             </ul>
         </li>
+        <!-- NYHEDER -->
+        <li><a href="/list">Nyheder</a></li>
+        <!-- TASTE CASE -->
         <li class="dropdown">
-            <a href="#">
-                <div class="arrow-add">
-                <p>Det syrlige</p>
-                <Arrow/>
-            </div>
-            </a>
-            <!-- DET SYRLIGE DROPDOWN -->
-            <ul class="submenu">
-                <li><a href="#">Alle Syrlige</a></li>
-                <li><a href="#">Stout ale</a></li>
-                <li><a href="#">Berlin weisse</a></li>
-                <li><a href="#">Det syrlige med kort dato</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">
-                <div class="arrow-add">
-                <p>Det mørke</p>
-                <Arrow/>
-            </div>
-            </a>
-            <!-- DET MØRKKE DROPDOWN -->
-            <ul class="submenu">
-                <li><a href="#">Alle mørke</a></li>
-                <li><a href="#">Ale</a></li>
-                <li><a href="#">Brown ale</a></li>
-                <li><a href="#">Stout</a></li>
-                <li><a href="#">Porter</a></li>
-                <li><a href="#">Barley wine</a></li>
-                <li><a href="#">Det mørke med kort dato</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">
-                <div class="arrow-add">
-                <p>Det lyse</p>
-                <Arrow/>
-            </div>
-            </a>
-            <!-- DET LYSE DROPDOWN -->
-            <ul class="submenu">
-                <li><a href="#">Alle lyse</a></li>
-                <li><a href="#">Alle hvedeøl</a></li>
-                <li><a href="#">Blonde</a></li>
-                <li><a href="#">Tripel</a></li>
-                <li><a href="#">Det lyse med kort dato</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">
-                <div class="arrow-add">
-                <p>Alkoholfri</p>
-                <Arrow/>
-            </div>
-            </a>
-            <!-- ALKOHOLFRI DROPDOWN -->
-            <ul class="submenu">
-                <li><a href="#">Alle alkoholfri</a></li>
-                <li><a href="#">Alkoholfri med kort dato</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Fadøl og fadølsanlæg</a></li>
-        <li><a href="#">Perfekt til gave</a></li>
-        <li><a href="#">Offers</a></li>
-      </ul>
-    </li>
-    <!-- NYHEDER -->
-    <li><a href="#">Nyheder</a></li>
-    <!-- TASTE CASE -->
-    <li class="dropdown">
-        <a href="#">
-            <div class="arrow-add">
-                <p>Taste case</p>
-                <Arrow/>
-            </div>
-        </a>
+            <a href="/list">Taste case</a>
+            <Arrow/>
         <!-- TASTE CASE DROPDOWN -->
-        <ul class="submenu">
-            <li><a href="#">Alle taste case</a></li>
-            <li><a href="#">Månedens taste case</a></li>
-            <li><a href="#">IPA taste</a></li>
-            <li><a href="#">Lager pils taste</a></li>
-            <li><a href="#">Stout taste</a></li>
-            <li><a href="#">Taste case abonnement</a></li>
-        </ul>
+            <ul class="submenu">
+                <li><a href="/list">Alle taste case</a></li>
+                <li><a href="/list">Månedens taste case</a></li>
+                <li><a href="/list">IPA taste</a></li>
+                <li><a href="/list">Lager pils taste</a></li>
+                <li><a href="/list">Stout taste</a></li>
+                <li><a href="/list">Taste case abonnement</a></li>
+            </ul>
         </li>
-    <!-- ØLSMAGNING -->
-    <li><a href="#">Ølsmagning</a></li>
-    <!-- ERHVERV -->
-    <li><a href="#">Erhvev</a></li>
-    <!-- OM OS -->
-    <li><a href="#">Om os</a></li>
-  </ul>
+        <!-- ØLSMAGNING -->
+        <li><a href="/list">Ølsmagning</a></li>
+        <!-- ERHVERV -->
+        <li><a href="/list">Erhvev</a></li>
+        <!-- OM OS -->
+        <li><a href="/list">Om os</a></li>
+    </ul>
 
-  <!-- ICONS -->
-  <div class="nav-icons">
-    <div class="search">
-        <Search/>
+    <!-- ICONS -->
+    <div class="nav-icons">
+        <div class="search">
+            <Search/>
+        </div>
+        <div class="profile">
+            <Profile/>
+        </div>
+        <div class="bag">
+            <Bag/>
+        </div>
     </div>
-    <div class="profile">
-        <Profile/>
-    </div>
-    <div class="bag">
-        <Bag/>
-    </div>
-  </div>
 </nav>
 
 <style>
     /* put this in general */
     body{
-        font-family: helvetica neue;
+        font-family: var(--inter);
+        color: var(--darkest_green) ;
+        font-size: 14px;
     }
     a{
         text-decoration: none;
+        color: var(--darkest_green) ;
     }
 
-    .arrow-add{
-        display: flex;
-        align-items: center;
-        gap: 0 0.5rem;
-        height: 100%;
+    ul li a {
+        position: relative;
+    }
+
+    ul li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background: var(--darkest_green);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    ul li a:hover::after {
+        transform: scaleX(1);
     }
 
     .nav{
@@ -192,11 +179,16 @@ import Bag from '../assets/bag.svg';
         justify-content: space-between;
         align-items: center;
         padding: 0 3rem;
+        height: 80px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
     }
 
     .menu {
         display: flex;
         justify-content: space-evenly;
+        align-items: center;
         width: 100%;
         list-style: none;
     }
@@ -214,7 +206,8 @@ import Bag from '../assets/bag.svg';
         list-style: none;
         padding: 2rem;
         border-radius: 7px;
-        width: 220px;
+        width: 200px;
+        line-height: 2.5rem;
 
         /* animation */
         opacity: 0;
@@ -230,10 +223,6 @@ import Bag from '../assets/bag.svg';
         transform: translateY(0);
         pointer-events: auto;
     }
-/* 
-    .submenu li{
-        padding: 0.5rem;
-    } */
 
     .submenu .submenu {
         top: 0;
@@ -244,6 +233,13 @@ import Bag from '../assets/bag.svg';
     .nav-icons{
         display: flex;
         justify-content: space-between;
-        width: 160px;
+        align-items: center;
+        width: 150px;
     }
+
+    .search, .profile, .bag {
+        cursor: pointer;
+    }
+
+
 </style>
