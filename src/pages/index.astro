@@ -1,28 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
+import AlderPopup from "../components/AlderPopup.astro";
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
 const endpoint = "https://kea-alt-del.dk/t7/api/products";
 const data = await fetch(endpoint).then((response) => response.json());
 
 console.log(data);
-
 ---
 
 <Layout>
-	<Hero
-	title ="LESS WASTE GREAT TASTE"
-	subtitle = "Køb billige specialøl 
-	med både korte og lange holdbarhedsdatoer">
-	</Hero>
+  <AlderPopup />
+  <Hero
+    title="LESS WASTE GREAT TASTE"
+    subtitle="Køb billige specialøl 
+	med både korte og lange holdbarhedsdatoer"
+  />
 
-
-	<h2>Categories</h2>
-	<a href="/list">Accessories</a>
-	<a href="/list">Apparel</a>
-	<a href="/list">Footwear</a>
-	<a href="/list">Free Items</a>
-	<a href="/list">Personal Care</a>
-	<a href="/list">Sporting Goods</a>
-
+  <h2>Categories</h2>
+  <a href="/list">Accessories</a>
+  <a href="/list">Apparel</a>
+  <a href="/list">Footwear</a>
+  <a href="/list">Free Items</a>
+  <a href="/list">Personal Care</a>
+  <a href="/list">Sporting Goods</a>
 </Layout>
-
