@@ -80,25 +80,18 @@ AYOLICASE/
 
 ## Filbeskrivelser SKAL LAVES
 -  **AlderpPopup.astro** – Komponent - HTML, CSS og JavaScript for MitID bekræftelses popup
--  **Button.astro** – 
--  **Card.astro** -
--  **Footer.astro** -
--  **Header.astro** -
--  **Hero.astro** -
+-  **Button.astro** – Komponent - HTML, CSS for buttons på produktliste siden
+-  **Card.astro** - Komponent - HTML, CSS og JavaScript for cards på produktliste siden
+-  **Footer.astro** - Komponent - HTML, CSS footer bruges på alle sider
+-  **Header.astro** - Komponent - HTML, CSS og Javascript navigation som bruges på alle sider
+-  **Hero.astro** - Komponent - HTML og CSS bruges på forsiden
 -  **MitIdPopUp.astro** - Komponent - HTML, CSS og JavaScript for alders bekræftelses popup
--  **TopBaner.astro** -
--  **Layout.astro** -
--  **[slug].astro** -
+-  **TopBaner.astro** - Komponent - HTML, CSS banner over navigationen som bruges på alle sider
+-  **Layout.astro** - Layout - HTML og CSS her er vores fonte bl.a. indsat
+-  **[slug].astro** - 
 -  **index.astro** - Forsiden
--  **list.astro** - Produkt liste siden
+-  **list.astro** - Produktliste siden
 -  **product.astro** - Produkt side
-
-## Hvordan koden fungerer SKAL LAVES
-
-
-**Flow:**
-
-
 
 ## Navngivning 
 
@@ -131,14 +124,23 @@ Vi har brugt camelCase i JavaScript, fordi det gør koden mere ensartet og lette
 
 Vi henter data fra et API i JSON-format.
 
-**Et objekt kan fx se sådan ud:** SKAL LAVES
+**Et objekt kan fx se sådan ud:** 
 
-```json
+```
+{data.id}
+{data.image}
+{data.brand}
+{data.title}
+{data.type}
+{data.price}
 
 ```
 
-### Felter vi bruger SKAL LAVES
-
+### Felter vi bruger
+id
+title
+brand
+price
 
 ### HTML-Validering: SKAL LAVES
 - `type="text"` -validerer tekst input
@@ -164,28 +166,14 @@ Vi har dertil arbjedet med branches så vi kunne være flere om at kode på samm
 
 ## Bæredygtighed SKAL LAVES
 
-Vi har tænkt bæredygtighed ind i projektet ved at holde page weight under 250 kb samt en enkel informationasarkitektur.
-
-**Tiltag:** SKAL LAVES
-
-- Ingen videoer
-- Genbruge af kode
-- Optimerede billeder: svg + webp
-
-## Udfordringer undervejs SKAL LAVES
-Der har selvfølgelig været småfejl undervejs eksempelvis som.....
+Vi har tænkt bæredygtighed ind i projektet ved bl.a. ikke at bruge videoer på siden. 
+Derudover har vi også genbrugt koder og komprimeret billeder (vi har kun benyttet os af svg og webp filer)
 
 
-**Løsninger:** SKAL LAVES
-
-- .....
-
-
-## Mulige forbedringer SKAL LAVES
+## Mulige forbedringer
 
 Hvis vi skulle arbejde videre med projektet, kunne vi forbedre det ved at tilføje:
 
-- At få søgefunktion til at virke, lige nu er det bare implementeret på sitet af æstetiske årsager
 - Error handling - 404 side
 
 
