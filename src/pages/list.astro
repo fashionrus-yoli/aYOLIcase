@@ -1,48 +1,28 @@
+
 ---
 //@ts-nocheck
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
+import Card from '../components/Card.astro'; // Vi importerer dit Card
 
+const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
 const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
 
-const options = {
-    method:"GET",
-    headers: {
-        apikey: key,
-    },
-};
-
-const data = await fetch(endpoint, options).then((response) => response.json());
-console.log(data);
-
+const res = await fetch(endpoint, { headers: { apikey: key } });
+const products = await res.json();
 ---
 
-<Layout>
-    <h2>Products</h2>
-    <section>
-    {data.map((product)=><Card {product}/>)}
-   </section> 
+<Layout title="Vores Øludvalg">
+  <section class="grid">
+    {products.map(item => (
+      <Card data={item} /> 
+    ))}
+  </section>
 </Layout>
 
 <style>
-section {
-    max-width: 100%;
+  .grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 1rem;
-}
-
-
-@media (max-width: 450px) {
- section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  align-items: stretch;
-}
-
-}
-
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
 </style>
