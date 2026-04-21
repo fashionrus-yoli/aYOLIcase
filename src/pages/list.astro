@@ -2,7 +2,7 @@
 ---
 //@ts-nocheck
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro'; // Vi importerer dit Card
+import Card from '../components/Card.astro';
 
 const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
 const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
@@ -12,17 +12,198 @@ const products = await res.json();
 ---
 
 <Layout title="Vores Øludvalg">
-  <section class="grid">
-    {products.map(item => (
-      <Card data={item} /> 
-    ))}
-  </section>
+  <div class="page_container">
+    <aside class="sidebar">
+      <div class="filter_section">
+        <h3>FILTRE</h3>
+        <details open>
+          <summary>PRIS</summary>
+        </details>
+        <details open>
+          <summary>BRYGHUS</summary>
+        </details>
+        <details open>
+          <summary>ØL TYPER</summary>
+        </details>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="list_header">
+        <p class="breadcrumb">FORSIDE / ALLE ØL</p>
+        <div class="header_actions">
+          <span>VIS FILTRE</span>
+          <span>SORTER EFTER ∨</span>
+        </div>
+    </div>
+
+      <h1 class="main_title">ALLE ØL</h1>
+
+      <section class="grid">
+        {products.map(item => (
+          <Card data={item} /> 
+        ))}
+      </section>
+
+      <div class="pagination">
+        <button class="see_more">Se flere øl</button>
+      </div>
+    </main>
+  </div>
 </Layout>
 
 <style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    layout {
+        background-color: var(--white);
+    }
+
+  .page_container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--off_white);
+  padding: 2rem;
+
+}
+
+  .filter_section h3 {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+    color: var(--grey);
   }
+
+  .filter_section {
+    color: var(--grey);
+  }
+
+  details {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.5rem;
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  summary::after {
+    content: '∨';
+    font-size: 0.8rem;
+  }
+
+.content {
+  padding: 1rem 2rem;
+  background-color: #fdfaf0; /* Den beige baggrund */
+  /* Fjern eventuel max-width her hvis den skal fylde mere */
+}
+
+ .list_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  margin-bottom: 2rem;
+  color: #666;
+  
+  /* TILFØJ DETTE: */
+  background-color: #d2d5b2; /* Gør toppen grøn */
+  margin: -1rem -4rem 3rem -4rem; /* Trækker den ud til kanterne af 'content' */
+  padding: 1rem 4rem; /* Giver luft indeni igen */
+}
+
+  .header_actions span {
+    margin-left: 2rem;
+    cursor: pointer;
+  }
+
+  .main_title {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  color: var(--darkest_green);}
+
+ .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 20px;
+  
+  /* JUSTER DISSE: */
+  max-width: 1400px; /* Gør denne større (f.eks. fra 1000px til 1400px) */
+  margin: 0 auto;
+  width: 100%; /* Sørg for at den prøver at fylde pladsen ud */
+}
+  .pagination {
+    text-align: center;
+    margin-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .see_more {
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    font-family: inherit;
+    padding-bottom: 5px;
+    color: var(--grey);
+  }
+
+@media (max-width: 450px) {
+  .sidebar {
+    display: none;
+  }
+
+ 
+  .page_container {
+    grid-template-columns: 1fr;
+  }
+
+  .list_header {
+    flex-direction: column; 
+    gap: 1rem;
+    text-align: center;
+    margin: -1rem -1rem 2rem -1rem;
+    padding: 2rem 1rem;
+    background-color: #d2d5b2;
+  }
+
+  .header_actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 0;
+  }
+
+  .header_actions span {
+    margin: 0; 
+  }
+
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 10px;
+    padding: 0;
+  }
+
+
+  .content {
+    padding: 1rem;
+  }
+
+ 
+  .main_title {
+    display: none;
+  }
+}
 </style>
