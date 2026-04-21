@@ -1,7 +1,8 @@
 ---
 import '../../public/css/variabler.css';
 import Logo from '../assets/logo.svg';
-import Arrow from '../assets/arrow.svg';
+import Burger from '../assets/BurgerMenu.svg';
+import Arrow from '../assets/Arrow.svg';
 import Search from '../assets/search.svg';
 import Profile from '../assets/profile.svg';
 import Bag from '../assets/bag.svg';
@@ -16,16 +17,19 @@ import Bag from '../assets/bag.svg';
   </div>
 
   <!-- MENU -->
+    <button class="burger" aria-label="Menu">
+        <Burger/>
+    </button>
     <ul class="menu">
         <li class="dropdown">
             <!-- SHOP -->
-            <a href="/list">Shop</a>
+            <button class="dropdown-toggle">Shop</button>
             <Arrow/>
         <!-- SHOP DROPDOWN -->
             <ul class="submenu">
                 <li><a href="/list">Alle øl</a></li>
                 <li class="dropdown">
-                    <a href="/list">IPA / Pale ale</a>
+                    <button class="dropdown-toggle">IPA / Pale ale</button>
                     <Arrow/>
                 <!-- IPA / PALE ALE DROPDOWN -->
                     <ul class="submenu">
@@ -38,7 +42,7 @@ import Bag from '../assets/bag.svg';
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="/list">Lager / Pilser</a>
+                    <button class="dropdown-toggle">Lager / Pilser</button>
                     <Arrow/>
                 <!-- LAGER / PILSNER DROPDOWN -->
                     <ul class="submenu">
@@ -50,7 +54,7 @@ import Bag from '../assets/bag.svg';
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="/list">Det syrlige</a>
+                    <button class="dropdown-toggle">Det syrlige</button>
                     <Arrow/>
                 <!-- DET SYRLIGE DROPDOWN -->
                     <ul class="submenu">
@@ -61,7 +65,7 @@ import Bag from '../assets/bag.svg';
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="/list">Det mørke</a>
+                    <button class="dropdown-toggle">Det mørke</button>
                     <Arrow/>
                 <!-- DET MØRKKE DROPDOWN -->
                     <ul class="submenu">
@@ -75,7 +79,7 @@ import Bag from '../assets/bag.svg';
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="/list">Det lyse</a>
+                    <button class="dropdown-toggle">Det lyse</button>
                     <Arrow/>
                 <!-- DET LYSE DROPDOWN -->
                     <ul class="submenu">
@@ -87,7 +91,7 @@ import Bag from '../assets/bag.svg';
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="/list">Alkoholfri</a>
+                    <button class="dropdown-toggle">Alkoholfri</button>
                     <Arrow/>
                 <!-- ALKOHOLFRI DROPDOWN -->
                     <ul class="submenu">
@@ -104,7 +108,7 @@ import Bag from '../assets/bag.svg';
         <li><a href="/list">Nyheder</a></li>
         <!-- TASTE CASE -->
         <li class="dropdown">
-            <a href="/list">Taste case</a>
+            <button class="dropdown-toggle">Taste case</button>
             <Arrow/>
         <!-- TASTE CASE DROPDOWN -->
             <ul class="submenu">
@@ -138,16 +142,58 @@ import Bag from '../assets/bag.svg';
     </div>
 </nav>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.querySelector('.burger');
+  const menu = document.querySelector('.menu');
+
+  // Burger toggle
+  if (burger && menu) {
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+  }
+
+  // Dropdown toggles (ALL levels)
+  const toggles = document.querySelectorAll('.dropdown-toggle');
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const parent = toggle.closest('.dropdown');
+      if (!parent) return;
+
+      const submenu = parent.querySelector(':scope > .submenu');
+      if (!submenu) return;
+
+      submenu.classList.toggle('open');
+      parent.classList.toggle('open');
+    });
+  });
+});
+</script>
+
 <style>
     /* put this in general */
-    body{
+    a, button{
+        text-decoration: none;
+        color: var(--darkest_green);
         font-family: var(--inter);
         color: var(--darkest_green) ;
         font-size: 14px;
+        font-weight: 400;
+        display: inline;
+        cursor: pointer;
+        border: none;
+        background: none;
     }
-    a{
-        text-decoration: none;
-        color: var(--darkest_green) ;
+
+    .burger{
+        display: none;
+        border: none;
+        background: none;
+        cursor: pointer;
     }
 
     ul li a {
@@ -241,5 +287,54 @@ import Bag from '../assets/bag.svg';
         cursor: pointer;
     }
 
+    @media (max-width: 425px) {
+        .burger{
+        display: block;
+    }
+
+        .menu {
+            display: none; 
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            background: #EBEBD0;
+            padding: 0 2rem;
+            margin: 0;
+            z-index: 1000;
+        }
+
+        .menu.open {
+            display: flex;
+        }
+
+        .submenu {
+            position: static;   /* KEY FIX */
+            width: 100%;
+            padding: 0 0 0 1rem;
+
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+
+            display: none;
+        }
+
+        .submenu.open {
+            display: block;
+        }
+
+        .submenu .submenu {
+            padding: 0 1rem;
+        }
+
+        .dropdown-toggle{
+            padding: 0;
+        }
+    }  
 
 </style>
