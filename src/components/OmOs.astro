@@ -1,0 +1,83 @@
+---
+import "../../public/css/variabler.css";
+import ArrowBig from "../assets/ArrowBig.svg";
+
+const {
+  title = "VORES MISSION",
+  messageTop = "Hos A Good Case arbejder vi for en mere ansvarlig måde at nyde øl på. Vi samarbejder med bryggerier om at finde gode partier øl, som af forskellige årsager ikke når ud gennem de traditionelle salgskanaler – og giver dem i stedet en ny vej til forbrugerne.",
+  messageBottom = "Det betyder, at du får adgang til kvalitetsøl til en skarp pris, samtidig med at vi sammen bidrager til at reducere unødvendigt spild. For os handler det om at forene god smag med bedre valg.",
+} = Astro.props;
+---
+
+<article class="om-os-sektion">
+  <div class="om-os-billed">
+    <img src="../src/assets/OmosBilled.webp" alt="" />
+  </div>
+  <div class="om-os-indhold">
+    <h1 class="tekst-title">{title}</h1>
+    <p class="message-top">{messageTop}</p>
+    <p class="message-bottom">{messageBottom}</p>
+    <a href="/">Læs mere om vores mission her <ArrowBig /> </a>
+  </div>
+</article>
+
+<style>
+  .om-os-sektion {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    color: var(--darkest_green);
+    align-items: stretch;
+  }
+
+  .om-os-billed {
+    grid-row: 1/2;
+    height: auto;
+  }
+
+  .om-os-billed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .om-os-indhold {
+    grid-row: 2/3;
+    background-image: url(../src/assets/OmOsHumleBaggrund.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5rem;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .om-os-indhold a {
+    color: var(--darkest_green);
+  }
+  @media (min-width: 800px) {
+    .om-os-sektion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .om-os-billed img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .om-os-billed {
+      grid-row: 1;
+    }
+
+    .om-os-indhold {
+      padding: 5rem;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      grid-row: 1;
+    }
+  }
+</style>
