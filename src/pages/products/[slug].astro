@@ -1,25 +1,22 @@
 ---
 //@ts-nocheck
-import Layout from '../../layouts/Layout.astro';
-
 export async function getStaticPaths() {
     const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
     const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
-    const options = {
-        headers: { apikey: key },
-    };
+    
+    const response = await fetch(endpoint, { headers: { apikey: key } });
+    const products = await response.json();
 
-    const products = await fetch(endpoint, options).then((res) => res.json());
-
-   
     return products.map((product) => ({
-        params: { slug: product.id.toString() },
-        props: { product }, 
+        // 'slug' her skal matche filnavnet [slug].astro
+        // Vi bruger .toString() fordi URL-parametre altid er tekst
+        params: { slug: product.id.toString() }, 
+        props: { product }, // Her sender vi alt data for den specifikke øl videre
     }));
 }
 
-
 const { product } = Astro.props;
+import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title={product.title}>
@@ -32,18 +29,23 @@ const { product } = Astro.props;
             <p class="type">{product.type}</p>
             <p class="description">{product.description}</p>
             <p class="price">{product.price} kr</p>
-            <!-- Her kan du genbruge din Button komponent -->
-        </div>
+            </div>
     </section>
   </main>
 </Layout>
 
 <style>
-    
     .product_detail {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 4rem;
         padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    /* Tilføj mere styling her efter behov */
 </style>
