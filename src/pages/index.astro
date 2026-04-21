@@ -3,7 +3,8 @@ import AlderPopup from "../components/AlderPopup.astro";
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import IndexCard from "../components/IndexCard.astro";
-
+import OmOs from "../components/OmOs.astro";
+import Nyhedsbrev from "../components/Nyhedsbrev.astro";
 ---
 
 <Layout>
@@ -13,15 +14,13 @@ import IndexCard from "../components/IndexCard.astro";
     subtitle="Køb billige specialøl 
 	med både korte og lange holdbarhedsdatoer"
   />
-<IndexCard
-/>
-
-
+  <IndexCard />
+  <OmOs />
+  <Nyhedsbrev />
 </Layout>
 
-
 <style>
-  body{
-    background-color: var(--white) ;
+  body {
+    background-color: var(--white);
   }
 </style>
