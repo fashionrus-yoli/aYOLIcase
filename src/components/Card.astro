@@ -26,7 +26,6 @@ import Button from '../components/Button.astro';
         <h4>{product.price} kr</h4>
         {product.before_price && <h4 class="overstreget">{product.before_price} kr.</h4>}
         </div>
-
         <Button  size="large" />
         </section>
         
@@ -63,7 +62,7 @@ img {
 
 .badge {
     font-family: var(--inter);
-    font-weight: 5
+    font-weight: 500;
   width: fit-content; 
   padding: 4px 8px;
   border-radius: 4px;
@@ -121,6 +120,56 @@ p {
 a {
   text-decoration: none;
 }
+
+@media (max-width: 450px) {
+
+  article {
+    padding: 0.5rem; /* Mindre luft i kanten */
+  }
+
+  h3 {
+    font-size: 1.3rem; /* Gør titlen mindre på mobilen */
+  }
+
+  h4, h5 {
+    font-size: 1rem; /* Gør brand og pris mindre */
+  }
+
+  p{
+    font-size: 0.8rem;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+.card_description {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.5rem; 
+}
+
+.text_top {
+  margin-bottom: 1rem; 
+}
+
+.price_section {
+  margin-top: auto; 
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 0.5rem; 
+}
+
+button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+}
+
 
 </style>
 </a>
