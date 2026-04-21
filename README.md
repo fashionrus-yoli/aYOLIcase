@@ -145,22 +145,22 @@ Vi henter data fra et API i JSON-format.
 - `required` -feltet skal udfyldes
 - `<textarea>` -tekstfeldt til længere tekst
 
-# Git og branches SKAL LAVES
+# Git og branches 
 Vi har brugt GitHub til at kode denne hjemmeside sammen. 
 Vi har dertil arbjedet med branches så vi kunne være flere om at kode på samme tid. 
 
-### Eksempler på branches SKAL LAVES
-- `header!`
-- `mobile-vers+extra`
-- `mobile-vers`
+### Eksempler på branches 
+- header-fix
+- ophe-retter-hero
+- card_and_button_mobile
 
-### Workflow SKAL LAVES
+### Workflow
 
 1. Lave en branch med et navn der stemmer overens med den opgave man er gået igang med
-2. Kode en feature
+2. Kode et feature
 3. Committe ændringer
 4. Pushe til GitHub
-5. Merge til main når det virkede
+5. Merge til main når det virker
 
 ## Bæredygtighed SKAL LAVES
 
@@ -168,7 +168,6 @@ Vi har tænkt bæredygtighed ind i projektet ved at holde page weight under 250 
 
 **Tiltag:** SKAL LAVES
 
-- Ingen frameworks
 - Ingen videoer
 - Genbruge af kode
 - Optimerede billeder: svg + webp
