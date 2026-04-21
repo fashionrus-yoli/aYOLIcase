@@ -6,8 +6,8 @@ Dette projekt har vi lavet i forbindelse med Tema 9, hvor vu har re-designet hje
 
 ## Links:
 
-- GitHub Pages: 
-
+- Netflify:
+https://agoodcaseg2.netlify.app/
 
 - Projektets GitHub Repository:
 https://github.com/fashionrus-yoli/aYOLIcase
@@ -88,10 +88,9 @@ AYOLICASE/
 -  **MitIdPopUp.astro** - Komponent - HTML, CSS og JavaScript for alders bekræftelses popup
 -  **TopBaner.astro** - Komponent - HTML, CSS banner over navigationen som bruges på alle sider
 -  **Layout.astro** - Layout - HTML og CSS her er vores fonte bl.a. indsat
--  **[slug].astro** - 
 -  **index.astro** - Forsiden
 -  **list.astro** - Produktliste siden
--  **product.astro** - Produkt side
+-  **[slug].astro** - Produktside - HTML, CSS og Javascript. [slug] bruges i filnavnet til at lave dynamiske ruter i Astro. Det fungerer som en variabel i URL’en, så én side kan vise forskelligt indhold baseret på hvilken værdi der kommer fra URL’en. På den måde kan man bruge én komponent til alle produkter i stedet for at lave en side per produkt.
 
 ## Navngivning 
 
@@ -137,15 +136,12 @@ Vi henter data fra et API i JSON-format.
 ```
 
 ### Felter vi bruger
-id
-title
-brand
-price
-
-### HTML-Validering: SKAL LAVES
-- `type="text"` -validerer tekst input
-- `required` -feltet skal udfyldes
-- `<textarea>` -tekstfeldt til længere tekst
+```
+- id
+- title
+- brand
+- price
+```
 
 # Git og branches 
 Vi har brugt GitHub til at kode denne hjemmeside sammen. 
