@@ -2,9 +2,19 @@
 import AlderPopup from "../components/AlderPopup.astro";
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-const endpoint = "https://kea-alt-del.dk/t7/api/products";
-const data = await fetch(endpoint).then((response) => response.json());
 
+const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=9";
+
+const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
+
+const options = {
+    method:"GET",
+    headers: {
+        apikey: key,
+    },
+};
+
+const data = await fetch(endpoint, options).then((response) => response.json());
 console.log(data);
 ---
 
@@ -16,11 +26,16 @@ console.log(data);
 	med både korte og lange holdbarhedsdatoer"
   />
 
-  <h2>Categories</h2>
-  <a href="/list">Accessories</a>
-  <a href="/list">Apparel</a>
-  <a href="/list">Footwear</a>
-  <a href="/list">Free Items</a>
-  <a href="/list">Personal Care</a>
-  <a href="/list">Sporting Goods</a>
+
+
 </Layout>
+
+<style>
+section {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+}
+</style>
+
