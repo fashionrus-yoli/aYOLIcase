@@ -31,23 +31,21 @@ console.log(data);
 
 <style>
 
-.index-card-grid {
+  .index-card-grid {
     display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin: 4rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding-top: 3rem;
+    padding-bottom: 7rem;
+  }
+  .card-nav a{
+  margin: 0;
   }
 
-  @media (max-width: 800px) {
-  .index-card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.card-nav {
-margin: 4rem;
+  .card-nav {
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   margin-bottom: 3rem;
   padding-top: 3rem;
 }
@@ -60,6 +58,23 @@ color: var(--darkest_green);
   position: relative;
   padding-bottom: 5px;
 }
+
+
+ @media screen and (min-width: 1000px) {
+  .card-nav {
+margin: 4rem;
+  gap: 3rem;
+  padding-top: 2rem;
+}
+
+  .index-card-grid {
+    display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 4rem;
+  padding-bottom: 10rem;
+  }
+
 
 /* underline effect */
 .card-nav a::after {
@@ -75,5 +90,6 @@ background-color: var(--darkest_green);
 
 .card-nav a:hover::after {
   width: 100%;
-}
+}}
+
 </style>

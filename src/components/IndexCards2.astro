@@ -1,0 +1,101 @@
+---
+---
+
+<article class="cards-grid-2">
+<a href="">
+    <img src="/images/cheers.webp" alt="Mennesker der skåler">
+    <h2 class="oelsmagning-h2">ØLSMAGNING</h2>
+</a>
+<a href="">
+    <img src="/images/erhverv.webp" alt="Billeder af øl og mennesker i baggrunden">
+    <h2>ERHVERV</h2>
+</a>
+<a href="">
+    <img src="/images/shaking-hands.webp" alt="Tegning at to der giver hånd">
+    <h2>PARTNERSKAB</h2>
+</a>
+<a href="">
+    <img src="/images/abonnement.webp" alt="Øl i en papkasse">
+    <h2>ABONNEMENT</h2>
+</a>
+</article>
+
+<style>
+
+
+ .cards-grid-2 a:hover img {
+ transform: scale(1.05);
+}
+
+.cards-grid-2 img {
+    transition: transform 0.5s ease;
+}
+.cards-grid-2 a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards-grid-2 h2 {
+    position: absolute;
+    margin: 0;
+    color:#fffbf2 ;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 500;
+
+}
+
+/* mørk overlay for readability */
+.cards-grid-2 a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+    .cards-grid-2 a {
+    position: relative;
+    overflow: hidden;
+}
+
+.cards-grid-2{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.cards-grid-2 img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    
+}
+
+    @media screen and (min-width: 1000px) {
+
+  .cards-grid-2 .oelsmagning-h2 {
+    font-size: 4rem;
+  }
+
+
+  .cards-grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, 300px); 
+    gap: 1rem;
+   
+}
+
+.cards-grid-2 a:nth-child(1) {
+    grid-row: span 3;
+}
+.cards-grid-2 img {
+    width: 100%;
+    height: 100%;
+}
+
+ }
+</style>
