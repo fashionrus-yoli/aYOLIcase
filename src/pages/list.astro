@@ -30,20 +30,28 @@ const products = await res.json();
 
     <main class="content">
       <div class="list_header">
-        <p class="breadcrumb">FORSIDE / ALLE ØL</p>
+        <p class="breadcrumb"><a href="/">FORSIDE</a> / ALLE ØL</p>
         <div class="header_actions">
-          <span>VIS FILTRE</span>
-          <span>SORTER EFTER ∨</span>
-        </div>
+  <span>VIS FILTRE</span>
+  <select id="sort-select">
+  <option value="default">SORTER EFTER ∨</option>
+  <option value="name-asc">Navn (A-Å)</option>
+  <option value="name-desc">Navn (Å-A)</option> 
+  <option value="price-asc">Pris (Lav - Høj)</option>
+  <option value="price-desc">Pris (Høj - Lav)</option>
+</select>
+</div>
     </div>
 
       <h1 class="main_title">ALLE ØL</h1>
 
-      <section class="grid">
-        {products.map(item => (
-          <Card data={item} /> 
-        ))}
-      </section>
+      <section class="grid" id="product-grid">
+  {products.map(item => (
+    <article class="product-item" data-title={item.title} data-price={item.price}>
+      <Card data={item} /> 
+    </article>
+  ))}
+</section>
 
       <div class="pagination">
         <button class="see_more">Se flere øl</button>
@@ -55,6 +63,11 @@ const products = await res.json();
 <style>
     layout {
         background-color: var(--white);
+    }
+
+    a{
+        text-decoration: none;
+        color: var(--grey);
     }
 
   .page_container {
@@ -71,16 +84,14 @@ const products = await res.json();
 
   .filter_section h3 {
     font-size: 0.8rem;
+    font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 2rem;
     opacity: 0.7;
     color: var(--grey);
   }
 
-  .filter_section {
-    color: var(--grey);
-  }
-
+ 
   details {
     margin-bottom: 1.5rem;
     border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -90,9 +101,10 @@ const products = await res.json();
   summary {
     list-style: none;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 400;
     display: flex;
     justify-content: space-between;
+    color: var(--grey);
   }
 
   summary::after {
@@ -102,8 +114,7 @@ const products = await res.json();
 
 .content {
   padding: 1rem 2rem;
-  background-color: #fdfaf0; /* Den beige baggrund */
-  /* Fjern eventuel max-width her hvis den skal fylde mere */
+  background-color: #fdfaf0;
 }
 
  .list_header {
@@ -112,12 +123,10 @@ const products = await res.json();
   align-items: center;
   font-size: 0.7rem;
   margin-bottom: 2rem;
-  color: #666;
-  
-  /* TILFØJ DETTE: */
-  background-color: #d2d5b2; /* Gør toppen grøn */
-  margin: -1rem -4rem 3rem -4rem; /* Trækker den ud til kanterne af 'content' */
-  padding: 1rem 4rem; /* Giver luft indeni igen */
+  color: var(--grey);
+  background-color: var(--off_white); 
+  margin: -1rem -4rem 3rem -4rem; 
+  padding: 1rem 4rem;
 }
 
   .header_actions span {
@@ -137,11 +146,9 @@ const products = await res.json();
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px 20px;
-  
-  /* JUSTER DISSE: */
-  max-width: 1400px; /* Gør denne større (f.eks. fra 1000px til 1400px) */
+  max-width: 1400px;
   margin: 0 auto;
-  width: 100%; /* Sørg for at den prøver at fylde pladsen ud */
+  width: 100%; 
 }
   .pagination {
     text-align: center;
@@ -158,6 +165,19 @@ const products = await res.json();
     padding-bottom: 5px;
     color: var(--grey);
   }
+
+  #sort-select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--darkest_green);
+  font-family: inherit;
+  font-size: 0.7rem;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  text-transform: uppercase;
+  outline: none;
+}
 
 @media (max-width: 450px) {
   .sidebar {
@@ -207,3 +227,40 @@ const products = await res.json();
   }
 }
 </style>
+
+<script>
+  const select = document.querySelector('#sort-select') as HTMLSelectElement;
+  const grid = document.querySelector('#product-grid') as HTMLElement;
+  const items = Array.from(grid.querySelectorAll('.product-item')) as HTMLElement[];
+
+  select.addEventListener('change', (e) => {
+    const target = e.target as HTMLSelectElement;
+    const value = target.value;
+    let sortedItems: HTMLElement[];
+
+    if (value === 'name-asc') {
+      // A til Å
+      sortedItems = [...items].sort((a, b) => 
+        (a.dataset.title || "").localeCompare(b.dataset.title || "")
+      );
+    } else if (value === 'name-desc') {
+      // Å til A (Vi bytter rundt på a og b)
+      sortedItems = [...items].sort((a, b) => 
+        (b.dataset.title || "").localeCompare(a.dataset.title || "")
+      );
+    } else if (value === 'price-asc') {
+      sortedItems = [...items].sort((a, b) => 
+        parseFloat(a.dataset.price || "0") - parseFloat(b.dataset.price || "0")
+      );
+    } else if (value === 'price-desc') {
+      sortedItems = [...items].sort((a, b) => 
+        parseFloat(b.dataset.price || "0") - parseFloat(a.dataset.price || "0")
+      );
+    } else {
+      sortedItems = items;
+    }
+
+    grid.innerHTML = '';
+    sortedItems.forEach(item => grid.appendChild(item));
+  });
+</script>
