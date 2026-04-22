@@ -1,0 +1,212 @@
+---
+import "../../public/css/variabler.css";
+
+import HeartIcon from "../assets/Heart.svg";
+import GlobeIcon from "../assets/Globe.svg";
+import SparTegnIcon from "../assets/SparTegn.svg";
+import CheckIcon from "../assets/Check.svg";
+
+type ValueItem = {
+  title: string;
+  text: string;
+  icon: { src: string };
+};
+
+const {
+  values = [
+    {
+      title: "SOCIALT ANSVAR",
+      text: "Vi ansætter unge med udfordringer.",
+      icon: HeartIcon,
+    },
+    {
+      title: "MILJØBEVIDST",
+      text: "Red øl med A Good Case og skån miljøet.",
+      icon: GlobeIcon,
+    },
+    {
+      title: "STORE BESPARELSER",
+      text: "Køb øl til lav pris, men høj kvalitet.",
+      icon: SparTegnIcon,
+    },
+    {
+      title: "KVALITET I FOKUS",
+      text: "Premium-øl fra Europas bedste bryggerier.",
+      icon: CheckIcon,
+    },
+  ] as ValueItem[],
+} = Astro.props;
+---
+
+<section class="values-banner">
+  <div id="values-track" class="values-track">
+    {
+      values.map((item: ValueItem) => (
+        <article class="value-card">
+          <div class="value-icon-wrap">
+            <img class="value-icon" src={item.icon.src} alt="" />
+          </div>
+          <h3 class="value-title">{item.title}</h3>
+          <p class="value-text">{item.text}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="values-dots">
+    {
+      values.map((_: ValueItem, index: number) => (
+        <button
+          class={`values-dot ${index === 0 ? "is-active" : ""}`}
+          type="button"
+          aria-label={`Gå til slide ${index + 1}`}
+          data-dot={index}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById("values-track");
+  const dots = document.querySelectorAll<HTMLElement>("[data-dot]");
+
+  function updateDots() {
+    if (!track) return;
+    const index = Math.round(track.scrollLeft / track.clientWidth);
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+  }
+
+  function goToSlide(index: number) {
+    track?.scrollTo({ left: track.clientWidth * index, behavior: "smooth" });
+  }
+
+  dots.forEach((dot, index) =>
+    dot.addEventListener("click", () => goToSlide(index)),
+  );
+  track?.addEventListener("scroll", updateDots, { passive: true });
+  window.addEventListener("resize", updateDots);
+
+  updateDots();
+</script>
+
+<style>
+  .values-banner {
+    width: 100%;
+    background: var(--off_white);
+    overflow: hidden;
+  }
+
+  .values-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .values-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .value-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    text-align: center;
+    padding: 2.5rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  .value-icon-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .value-icon {
+    width: 2.5rem;
+    height: auto;
+    object-fit: contain;
+    padding-bottom: 1rem;
+  }
+
+  .value-title,
+  .value-text {
+    margin: 0;
+    color: var(--grey);
+    font-family: var(--inter);
+    line-height: 1;
+  }
+
+  .value-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-text {
+    font-size: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .values-dots {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 0 2rem;
+  }
+
+  .values-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--darkest_green);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .values-dot.is-active {
+    background: var(--darkest_green);
+  }
+
+  @media (min-width: 800px) {
+    .values-banner {
+      padding: 4rem 0;
+    }
+
+    .values-track {
+      overflow: visible;
+      scroll-snap-type: unset;
+    }
+
+    .value-card {
+      flex: 1 1 25%;
+      min-width: 0;
+      padding: 0 2rem;
+      position: relative;
+      height: auto;
+    }
+
+    .value-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 2px;
+      background: var(--darkest_green);
+      opacity: 0.5;
+    }
+
+    .value-title {
+      font-size: 1rem;
+    }
+    .value-text {
+      font-size: 1rem;
+    }
+
+    .values-dots {
+      display: none;
+    }
+  }
+</style>
