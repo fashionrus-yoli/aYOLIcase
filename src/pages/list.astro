@@ -32,18 +32,25 @@ const products = await res.json();
       <div class="list_header">
         <p class="breadcrumb">FORSIDE / ALLE ØL</p>
         <div class="header_actions">
-          <span>VIS FILTRE</span>
-          <span>SORTER EFTER ∨</span>
-        </div>
+  <span>VIS FILTRE</span>
+  <select id="sort-select">
+    <option value="default">SORTER EFTER</option>
+    <option value="name-asc">Navn (A-Å)</option>
+    <option value="price-asc">Pris (Lav til høj)</option>
+    <option value="price-desc">Pris (Høj til lav)</option>
+  </select>
+</div>
     </div>
 
       <h1 class="main_title">ALLE ØL</h1>
 
-      <section class="grid">
-        {products.map(item => (
-          <Card data={item} /> 
-        ))}
-      </section>
+      <section class="grid" id="product-grid">
+  {products.map(item => (
+    <article class="product-item" data-name={item.name} data-price={item.price}>
+      <Card data={item} /> 
+    </article>
+  ))}
+</section>
 
       <div class="pagination">
         <button class="see_more">Se flere øl</button>
