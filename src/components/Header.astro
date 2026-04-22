@@ -9,17 +9,19 @@ import Bag from '../assets/bag.svg';
 ---
 
 <nav class="nav">
-    <!-- LOGO -->
-  <div class="logo">
-    <a href="/">
-        <Logo/>  
-    </a>
-  </div>
-
-  <!-- MENU -->
+    <!-- BURGER BUTTON -->
     <button class="burger" aria-label="Menu">
         <Burger/>
     </button>
+
+    <!-- LOGO -->
+    <div class="logo">
+        <a href="/">
+            <Logo/>  
+        </a>
+    </div>
+
+    <!-- MENU -->
     <ul class="menu">
         <li class="dropdown">
             <!-- SHOP -->
@@ -288,23 +290,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     @media (max-width: 425px) {
+        .nav{
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
         .burger{
-        display: block;
-    }
+            display: block;
+            padding-right: 54px;
+        }
 
         .menu {
             display: none; 
             position: absolute;
-            top: 80px;
+            top: 70px;
             left: 0;
-            width: 100%;
+            width: 100vw;
             height: calc(100vh - 80px);
             flex-direction: column;
+            justify-content: flex-start;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 3rem;
             background: #EBEBD0;
-            padding: 0 2rem;
             margin: 0;
+            padding: 0;
             z-index: 1000;
         }
 
@@ -312,15 +326,18 @@ document.addEventListener('DOMContentLoaded', () => {
             display: flex;
         }
 
+        .menu li{
+            padding-left: 1rem;
+        }
+
         .submenu {
             position: static;   /* KEY FIX */
             width: 100%;
             padding: 0 0 0 1rem;
-
+            width: 100%;
             opacity: 1;
             transform: none;
             pointer-events: auto;
-
             display: none;
         }
 
@@ -335,6 +352,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .dropdown-toggle{
             padding: 0;
         }
+
+        .nav-icons{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80px;
+    }
     }  
 
 </style>

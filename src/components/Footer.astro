@@ -7,11 +7,11 @@ import ArrowBig from '../assets/ArrowBig.svg';
 <footer>
     <section class="text">
     <Logo/>
-    <h2>Less waste, great taste</h2>
-    <p>Giv en overskydende øl fra bryggerier endnu en chance, til en skarp pris</p>
-    <p>Vi forbinder bæredygtighed med smag ved at mindske spild og sikre, at god øl bliver nydt - ikke hældt ud.</p>
+    <h2 class="hide">Less waste, great taste</h2>
+    <p class="hide">Giv en overskydende øl fra bryggerier endnu en chance, til en skarp pris</p>
+    <p class="hide">Vi forbinder bæredygtighed med smag ved at mindske spild og sikre, at god øl bliver nydt - ikke hældt ud.</p>
     </section>
-    <section>
+    <section class="hide">
         <h3>Shop</h3>
         <ul>
             <li><a href="/">Underkategori</a></li>
@@ -21,7 +21,7 @@ import ArrowBig from '../assets/ArrowBig.svg';
             <li><a href="/">Underkategori</a></li>
         </ul>
     </section>
-    <section>
+    <section class="hide">
         <h3>Kundeservice</h3>
         <ul>
             <li><a href="/">Underkategori</a></li>
@@ -31,7 +31,7 @@ import ArrowBig from '../assets/ArrowBig.svg';
             <li><a href="/">Underkategori</a></li>
         </ul>
     </section>
-    <section>
+    <section class="hide">
         <h3>Om os</h3>
         <ul>
             <li><a href="/">Underkategori</a></li>
@@ -41,7 +41,7 @@ import ArrowBig from '../assets/ArrowBig.svg';
             <li><a href="/">Underkategori</a></li>
         </ul>
     </section>
-    <section>
+    <section class="nyhedsbrev">
         <h3>Nyhedsbrev</h3>
         <form class="newsletter">
             <!-- Email input -->
@@ -166,6 +166,32 @@ import ArrowBig from '../assets/ArrowBig.svg';
 
     .checkbox input{
         accent-color: var(--dark_yellow);
+    }
+
+    @media (max-width: 425px) {
+        .hide{
+            display: none;
+        }
+
+        footer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 3rem 1rem;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .text{
+        grid-column: 2/3;
+        display: flex;
+        justify-content: right;
+        }
+
+        .nyhedsbrev{
+            grid-area: 1/1/2/2;
+        }
+
     }
 
 </style>
