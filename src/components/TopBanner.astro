@@ -3,15 +3,45 @@ import '../../public/css/variabler.css';
 import Star from '../assets/Star.svg';
 ---
 
-<section>
-    <p>Fri fragt over 499kr.- (ex. pant)</p>
-    <p>Hurtig levering</p>
-    <p>Prisgaranti</p>
-    <div>
+<section class="top-banner">
+  <div class="carousel">
+    <div class="track">
+
+      <div class="slide">
+        <p>Fri fragt over 499kr.- (ex. pant)</p>
+      </div>
+
+      <div class="slide">
+        <p>Hurtig levering</p>
+      </div>
+
+      <div class="slide">
+        <p>Prisgaranti</p>
+      </div>
+
+      <div class="slide">
         <Star/>
         <p>4.8 på Trustpilot</p>
-    </div>  
+      </div>
+
+    </div>
+  </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.track');
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    function moveSlide() {
+        index = (index + 1) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    setInterval(moveSlide, 3000); 
+    });
+</script>
 
 <style>
     section{
@@ -27,9 +57,41 @@ import Star from '../assets/Star.svg';
     }
 
     section div{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 0.4rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    @media (max-width: 425px) {
+        section{
+            height: 50px;
+            padding: 0 1rem;
         }
+
+        .top-banner {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .carousel {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    }
 </style>
