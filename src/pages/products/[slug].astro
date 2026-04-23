@@ -24,7 +24,15 @@ console.log(product);
 <Layout title={product.title}>
   <main>
    <section class="product_grid">
-        <img src={product.image} alt={product.title} />
+        <div class="gallery">
+        <div class="main-img-container">
+            <img src={product.image} alt={product.title} id="main-img" />
+        </div>
+        <div class="thumbnails">
+            <img src={product.image} alt="Thumbnail 1" class="thumb active" data-full={product.image} />
+            <img src={product.six_pack_img} alt="Thumbnail 2" class="thumb" data-full={product.six_pack_img} />
+        </div>
+    </div>
         <div>
             <p class="breadcrumb"><a href="/">FORSIDE</a> / <a href="../list">ALLE ØL</a> / {product.title}</p>
             <p class="best-before">Best before: {product.best_before}</p>
@@ -135,10 +143,40 @@ console.log(product);
         margin: 0 auto;
         color: var(--darkest_green);
     }
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+
+    .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main-img-container img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    transition: opacity 0.3s ease; /* Blød overgang når der skiftes */
+}
+
+.thumbnails {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.thumb:hover {
+    border-color: var(--grey);
+}
+
 
       .breadcrumb {
         color: var(--grey);
@@ -185,12 +223,12 @@ console.log(product);
 }
 
 .icon {
-  width: 40px; /* Juster størrelsen på dine SVG'er her */
+  max-height: 40px;
   height: auto;
 }
 
 .stock {
-  color: #c5a059; /* Den gyldne farve til lagerstatus */
+  color: var(--dark_yellow);
   margin: 5px 0;
 }
 
@@ -200,12 +238,11 @@ console.log(product);
 }
 
 .price-total {
-  color: #888;
+  color: var(--grey);
   font-size: 14px;
   margin-top: 2px;
 }
 
-/* Plus/Minus knapperne */
 .quantity-selector {
   display: flex;
   align-items: center;
@@ -215,7 +252,7 @@ console.log(product);
 
 .quantity-selector button {
   background: none;
-  border: 1.5px solid #2d3a2d;
+  border: 1.5px solid var(--grey);
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -232,3 +269,47 @@ console.log(product);
 }
 
 </style>
+
+<script>
+    const mainImg = document.getElementById('main-img');
+    const thumbs = document.querySelectorAll('.thumb');
+
+    thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            const newSrc = thumb.getAttribute('data-full');
+            // Vi fortæller TypeScript at mainImg er et billede (HTMLImageElement)
+            if (mainImg instanceof HTMLImageElement && newSrc) {
+                mainImg.src = newSrc;
+            }
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        });
+    });
+
+    const selectors = document.querySelectorAll('.quantity-selector');
+
+    selectors.forEach(selector => {
+        const minusBtn = selector.querySelector('button:first-child');
+        const plusBtn = selector.querySelector('button:last-child');
+        const countSpan = selector.querySelector('span');
+
+        let count = 0;
+
+        if (plusBtn && minusBtn && countSpan) {
+            plusBtn.addEventListener('click', () => {
+                if (count < 10) {
+                    count++;
+                    countSpan.textContent = count.toString();
+                }
+            });
+
+            minusBtn.addEventListener('click', () => {
+                if (count > 0) {
+                    count--;
+                    countSpan.textContent = count.toString();
+                }
+            });
+        }
+    });
+</script>
