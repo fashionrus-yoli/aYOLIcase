@@ -4,94 +4,104 @@ import Star from '../assets/Star.svg';
 ---
 
 <section class="top-banner">
-  <div class="carousel">
-    <div class="track">
+    <div class="carousel">
+        <div class="track" id="track">
+            <div class="slide">
+                <p>Fri fragt over 499kr.- (ex. pant)</p>
+            </div>
 
-      <div class="slide">
-        <p>Fri fragt over 499kr.- (ex. pant)</p>
-      </div>
+            <div class="slide">
+                <p>Hurtig levering</p>
+            </div>
 
-      <div class="slide">
-        <p>Hurtig levering</p>
-      </div>
+            <div class="slide">
+                <p>Prisgaranti</p>
+            </div>
 
-      <div class="slide">
-        <p>Prisgaranti</p>
-      </div>
-
-      <div class="slide">
-        <Star/>
-        <p>4.8 på Trustpilot</p>
-      </div>
-
+            <div class="slide">
+                <div>
+                    <Star />
+                    <p>4.8 på Trustpilot</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const track = document.querySelector('.track');
-    const slides = document.querySelectorAll('.slide');
-    let index = 0;
+        const track = document.getElementById('track');
+        let slides = document.querySelectorAll('.slide');
 
-    function moveSlide() {
-        index = (index + 1) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-    }
+        // 🔥 clone first slide
+        const firstClone = slides[0].cloneNode(true);
+        track.appendChild(firstClone);
 
-    setInterval(moveSlide, 3000); 
+        slides = document.querySelectorAll('.slide');
+
+        let index = 0;
+
+        function moveSlide() {
+            index++;
+            track.style.transition = 'transform 0.5s ease';
+            track.style.transform = `translateX(-${index * 100}%)`;
+
+            // 👇 when we reach clone, snap back to real first slide
+            if (index === slides.length - 1) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    track.style.transform = `translateX(0%)`;
+                index = 0;
+                }, 500); // match transition duration
+            }
+        }
+        setInterval(moveSlide, 3000);
     });
 </script>
 
 <style>
-    section{
+    .top-banner {
+        height: 50px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
         align-items: center;
-        padding: 0 10rem;
-        background-color: var(--darkest_green);
+        overflow: hidden;
+    }
+
+    .carousel {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .track {
+        display: flex;
         color: var(--dark_yellow);
         font-family: var(--inter);
         font-size: 12px;
     }
 
-    section div{
+    .slide {
+        min-width: 100%;
+        height: 50px;
+        background-color: var(--darkest_green); 
         display: flex;
-        flex-direction: row;
+        justify-content: center;
         align-items: center;
-        gap: 0.4rem;
+        gap: 1rem;
+    }
+
+    .slide div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
     @media (max-width: 425px) {
-        section{
-            height: 50px;
-            padding: 0 1rem;
-        }
-
         .top-banner {
             height: 40px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .carousel {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .track {
-            display: flex;
-            transition: transform 0.5s ease;
         }
 
         .slide {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 11px;
         }
     }
 </style>
