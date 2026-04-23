@@ -2,6 +2,7 @@
 //@ts-nocheck
 import Layout from '../../layouts/Layout.astro';
 import IndexCard from "../../components/IndexCard.astro";
+import Button from '../../components/Button.astro';
 export async function getStaticPaths() {
     const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
     const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
@@ -17,21 +18,96 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
-
+console.log(product);
 ---
 
 <Layout title={product.title}>
   <main>
-    <section class="product_detail">
-        <img src={product.image} alt={product.title} />
+   <section class="product_grid">
+        <div class="gallery">
+        <div class="main-img-container">
+            <img src={product.image} alt={product.title} id="main-img" />
+        </div>
+        <div class="thumbnails">
+            <img src={product.image} alt="Thumbnail 1" class="thumb active" data-full={product.image} />
+            <img src={product.six_pack_img} alt="Thumbnail 2" class="thumb" data-full={product.six_pack_img} />
+        </div>
+    </div>
         <div>
-            <h5>{product.brand}</h5>
-            <h2>{product.title}</h2>
-            <p class="type">{product.type}</p>
-            <p class="description">{product.description}</p>
-            <p class="price">{product.price} kr</p>
+            <p class="breadcrumb"><a href="/">FORSIDE</a> / <a href="../list">ALLE ØL</a> / {product.title}</p>
+            <p class="best-before">Best before: {product.best_before}</p>
+            <h2>{product.brand} - {product.type} {product.title}</h2>
+             <div class="purchase-options">
+  <div class="option-card">
+    <div class="card-header">
+    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_625_3220)">
+<path d="M50 29.1978H0V46.8121C0 48.5731 1.74416 50 3.89543 50H46.093C48.2506 50 49.999 48.5687 49.999 46.8034V29.1978H50Z" fill="#2F3E2F"/>
+<path d="M24.8246 22.1888H25.1749C28.1573 22.1888 30.5789 24.702 30.5789 27.7971V46.3841C30.5789 48.3798 29.0178 50 27.0948 50H22.9079C20.9849 50 19.4238 48.3798 19.4238 46.3841V27.796C19.4238 24.702 21.8444 22.1888 24.8267 22.1888H24.8246Z" fill="#2F3E2F"/>
+<path d="M29.4334 30.3965H20.5674L23.4456 9.11612H26.2974L29.4334 30.3965Z" fill="#2F3E2F"/>
+<path d="M25.7279 7.62259H23.9869C23.2224 7.62259 22.6025 8.26584 22.6025 9.05933V9.92291C22.6025 10.7164 23.2224 11.3597 23.9869 11.3597H25.7279C26.4925 11.3597 27.1123 10.7164 27.1123 9.92291V9.05933C27.1123 8.26584 26.4925 7.62259 25.7279 7.62259Z" fill="#2F3E2F"/>
+<path d="M12.7817 22.251H13.132C16.1143 22.251 18.5359 24.7642 18.5359 27.8593V46.3841C18.5359 48.3798 16.9748 50 15.0518 50H10.865C8.94198 50 7.38086 48.3798 7.38086 46.3841V27.8582C7.38086 24.7642 9.80144 22.251 12.7838 22.251H12.7817Z" fill="#2F3E2F"/>
+<path d="M17.3904 30.4588H8.52441L11.4026 9.17944H14.2545L17.3904 30.4588Z" fill="#2F3E2F"/>
+<path d="M13.685 7.68591H11.944C11.1794 7.68591 10.5596 8.32916 10.5596 9.12266V9.98623C10.5596 10.7797 11.1794 11.423 11.944 11.423H13.685C14.4495 11.423 15.0694 10.7797 15.0694 9.98623V9.12266C15.0694 8.32916 14.4495 7.68591 13.685 7.68591Z" fill="#2F3E2F"/>
+<path d="M36.8676 22.1888H37.2179C40.2002 22.1888 42.6219 24.702 42.6219 27.7971V46.3841C42.6219 48.3798 41.0607 50 39.1377 50H34.9509C33.0279 50 31.4668 48.3798 31.4668 46.3841V27.796C31.4668 24.702 33.8874 22.1888 36.8697 22.1888H36.8676Z" fill="#2F3E2F"/>
+<path d="M41.4774 30.3965H32.6104L35.4885 9.11612H38.3404L41.4774 30.3965Z" fill="#2F3E2F"/>
+<path d="M37.7709 7.62259H36.0299C35.2653 7.62259 34.6455 8.26584 34.6455 9.05933V9.92291C34.6455 10.7164 35.2653 11.3597 36.0299 11.3597H37.7709C38.5355 11.3597 39.1553 10.7164 39.1553 9.92291V9.05933C39.1553 8.26584 38.5355 7.62259 37.7709 7.62259Z" fill="#2F3E2F"/>
+<path d="M45.3694 1.55902L42.2051 2.10926L45.8049 29.1978H50.0002L45.3694 1.55902Z" fill="#2F3E2F"/>
+<path d="M8.25794 1.76972L4.98106 1.58194L0 29.1978H4.23522L8.25794 1.76972Z" fill="#2F3E2F"/>
+<path d="M44.7613 0H5.23781C4.66206 0 4.19531 0.484394 4.19531 1.08193V1.29809C4.19531 1.89562 4.66206 2.38002 5.23781 2.38002H44.7613C45.337 2.38002 45.8038 1.89562 45.8038 1.29809V1.08193C45.8038 0.484394 45.337 0 44.7613 0Z" fill="#2F3E2F"/>
+</g>
+<defs>
+<clipPath id="clip0_625_3220">
+<rect width="50" height="50" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+       <h3>6-pack</h3>
+    </div>
+    <p class="stock">Lagerstatus: {product.in_store}</p>
+    <p class="price-stk"><strong>35,00 DDK/stk</strong></p>
+    <p class="price-total">210,00 kr. total</p>
+    
+    <div class="quantity-selector">
+      <button>-</button>
+      <span>0</span>
+      <button>+</button>
+    </div>
+  </div>
+
+  <div class="option-card">
+    <div class="card-header">
+       <svg width="15" height="50" viewBox="0 0 15 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_625_3216)">
+<path d="M5.54135 19.0983H9.45865C12.5177 19.0983 15.0011 21.5709 15.0011 24.6166V46.4413C15.0011 48.4052 13.3993 50 11.4269 50H3.57421C1.60176 50 0 48.4052 0 46.4413V24.6156C0 21.5709 2.48336 19.0983 5.54135 19.0983Z" fill="#2F3E2F"/>
+<path d="M8.93595 0H6.06383C5.29184 0 4.66602 0.623102 4.66602 1.39174V2.80146C4.66602 3.57009 5.29184 4.19319 6.06383 4.19319H8.93595C9.70794 4.19319 10.3338 3.57009 10.3338 2.80146V1.39174C10.3338 0.623102 9.70794 0 8.93595 0Z" fill="#2F3E2F"/>
+<path d="M14.1571 25.9777H0.927734L5.58642 2.09714H9.31252L14.1571 25.9777Z" fill="#2F3E2F"/>
+</g>
+<defs>
+<clipPath id="clip0_625_3216">
+<rect width="15" height="50" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+       <h3>Enkelt</h3>
+    </div>
+    <p class="stock">Lagerstatus: {product.in_store}</p>
+    <p class="price-stk"><strong>39,75 DDK/stk</strong></p>
+    
+    <div class="quantity-selector">
+      <button>-</button>
+      <span>0</span>
+      <button>+</button>
+    </div>
+  </div>
+</div>
+<Button/>
             </div>
     </section>
+
+   
 
 <section class="IndexCard-bg">
     <h2>Anbefalet til dig</h2>
@@ -42,9 +118,10 @@ const { product } = Astro.props;
 </Layout>
 
 <style>
-
-
-.IndexCard-bg h2{
+    main {
+        background-color: var(--white);
+    }
+    .IndexCard-bg h2{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -53,23 +130,186 @@ const { product } = Astro.props;
     font-weight: 600;
     font-size: 40px ;
     padding-top: 3rem ;
-
-
-}
-.IndexCard-bg{
+    }
+    .IndexCard-bg{
     background-color: var(--off_white);
-}
-    .product_detail {
+    }
+    .product_grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 4rem;
         padding: 2rem;
         max-width: 1200px;
         margin: 0 auto;
+        color: var(--darkest_green);
     }
-    img {
-        max-width: 100%;
-        height: auto;
+
+    .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main-img-container img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    transition: opacity 0.3s ease; /* Blød overgang når der skiftes */
+}
+
+.thumbnails {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.thumb:hover {
+    border-color: var(--grey);
+}
+
+
+      .breadcrumb {
+        color: var(--grey);
+        text-transform: uppercase;
     }
-    /* Tilføj mere styling her efter behov */
+    
+    .breadcrumb a {
+        color: var(--grey);
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .best-before {
+        color: var(--dark_yellow);
+        text-decoration: underline;
+        font-size: 1.2rem;
+    }
+
+    .purchase-options {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.option-card {
+  border: 1px solid var(--grey);    
+  border-radius: 12px;      
+  padding: 24px;
+  flex: 1;
+  max-width: 300px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.card-header h3 {
+  font-size: 24px;
+  margin: 0;
+  color: var(--darkest_green);
+}
+
+.icon {
+  max-height: 40px;
+  height: auto;
+}
+
+.stock {
+  color: var(--dark_yellow);
+  margin: 5px 0;
+}
+
+.price-stk {
+  font-size: 18px;
+  margin: 10px 0 0 0;
+}
+
+.price-total {
+  color: var(--grey);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.quantity-selector button {
+  background: none;
+  border: 1.5px solid var(--grey);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.quantity-selector span {
+  font-size: 22px;
+  font-weight: 500;
+}
+
 </style>
+
+<script>
+    const mainImg = document.getElementById('main-img');
+    const thumbs = document.querySelectorAll('.thumb');
+
+    thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            const newSrc = thumb.getAttribute('data-full');
+            // Vi fortæller TypeScript at mainImg er et billede (HTMLImageElement)
+            if (mainImg instanceof HTMLImageElement && newSrc) {
+                mainImg.src = newSrc;
+            }
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        });
+    });
+
+    const selectors = document.querySelectorAll('.quantity-selector');
+
+    selectors.forEach(selector => {
+        const minusBtn = selector.querySelector('button:first-child');
+        const plusBtn = selector.querySelector('button:last-child');
+        const countSpan = selector.querySelector('span');
+
+        let count = 0;
+
+        if (plusBtn && minusBtn && countSpan) {
+            plusBtn.addEventListener('click', () => {
+                if (count < 10) {
+                    count++;
+                    countSpan.textContent = count.toString();
+                }
+            });
+
+            minusBtn.addEventListener('click', () => {
+                if (count > 0) {
+                    count--;
+                    countSpan.textContent = count.toString();
+                }
+            });
+        }
+    });
+</script>
