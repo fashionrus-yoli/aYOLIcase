@@ -15,11 +15,7 @@ console.log(data);
 
 ---
 
- <div class="card-nav">
-  <a href="" >Udvalgte øl</a>
-  <a href="">Nye fund</a>
-  <a href="">Kort dato</a>
-</div>
+
 
 
 <article class="index-card-grid">
@@ -38,58 +34,17 @@ console.log(data);
     padding-top: 3rem;
     padding-bottom: 7rem;
   }
-  .card-nav a{
-  margin: 0;
-  }
-
-  .card-nav {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  padding-top: 3rem;
-}
-
-.card-nav a {
-  text-decoration: none;
-color: var(--darkest_green);
-  font-size: 1.5rem;
-  font-family: var(--inter);
-  position: relative;
-  padding-bottom: 5px;
-}
-
-
- @media screen and (min-width: 1000px) {
-  .card-nav {
-margin: 4rem;
-  gap: 3rem;
-  padding-top: 2rem;
-}
-
+  
+  @media screen and (min-width: 1000px) {
   .index-card-grid {
     display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   margin: 4rem;
   padding-bottom: 10rem;
-  }
+  }}
 
 
-/* underline effect */
-.card-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-background-color: var(--darkest_green);
-  transition: 0.3s ease;
-}
 
-.card-nav a:hover::after {
-  width: 100%;
-}}
 
 </style>

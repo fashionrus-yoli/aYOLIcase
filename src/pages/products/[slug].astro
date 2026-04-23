@@ -1,5 +1,7 @@
 ---
 //@ts-nocheck
+import Layout from '../../layouts/Layout.astro';
+import IndexCard from "../../components/IndexCard.astro";
 export async function getStaticPaths() {
     const endpoint = "https://iqemsajivxgkyvnsblsh.supabase.co/rest/v1/beer?select=*";
     const key = "sb_publishable_JJminKHUu5Xa_j_oVoNy_Q_djiIwRvF";
@@ -8,15 +10,14 @@ export async function getStaticPaths() {
     const products = await response.json();
 
     return products.map((product) => ({
-        // 'slug' her skal matche filnavnet [slug].astro
-        // Vi bruger .toString() fordi URL-parametre altid er tekst
+        
         params: { slug: product.id.toString() }, 
-        props: { product }, // Her sender vi alt data for den specifikke øl videre
+        props: { product },
     }));
 }
 
 const { product } = Astro.props;
-import Layout from '../../layouts/Layout.astro';
+
 ---
 
 <Layout title={product.title}>
@@ -25,16 +26,39 @@ import Layout from '../../layouts/Layout.astro';
         <img src={product.image} alt={product.title} />
         <div>
             <h5>{product.brand}</h5>
-            <h1>{product.title}</h1>
+            <h2>{product.title}</h2>
             <p class="type">{product.type}</p>
             <p class="description">{product.description}</p>
             <p class="price">{product.price} kr</p>
             </div>
     </section>
+
+<section class="IndexCard-bg">
+    <h2>Anbefalet til dig</h2>
+ <IndexCard />
+ </section>
+
   </main>
 </Layout>
 
 <style>
+
+
+.IndexCard-bg h2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: var(--darkest_green);
+    font-weight: 600;
+    font-size: 40px ;
+    padding-top: 3rem ;
+
+
+}
+.IndexCard-bg{
+    background-color: var(--off_white);
+}
     .product_detail {
         display: grid;
         grid-template-columns: 1fr 1fr;
