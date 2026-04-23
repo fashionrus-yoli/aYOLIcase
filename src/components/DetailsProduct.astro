@@ -1,28 +1,135 @@
-<!-- ---
-const {data} = Astro.props;
-
 ---
-<article class="product-description" >
-    <section class="beskrivelse">
-    <h3>{data.untappd}</h3>
-    <p>{data.description}</p>
-    </section>
+const { data } = Astro.props;
+---
 
+{
+  data && (
+    <article class="product-description">
+      <section class="beskrivelse">
+        <p class="untappd-rating">Untappd rating: {data.untappd}</p>
+        <p class="description">{data.description}</p>
+      </section>
 
-<details class="p-details">
-<summary>Detaljer</summary>
-<ul>
-    <li>Stil: {data.beer_type}</li>
-    <li>Størrelse: {data.size}</li>
-    <li>Alkoholprocent: {data.procent}</li>
-</ul>
-<p>Allergener:{data.allergener}</p>
-<p>Best before datoen er:{data.best_before}</p>
-<p></b>NB</b>: Fri fragt ved køb over 499 kr. ellers pålægges der 59 kr. i fragt.</p>
-</details>
-
-</article>
+      <details class="p-details">
+        <summary>Detaljer</summary>
+        <div class="details-content">
+          <ul>
+            <li>Stil: {data.beer_type}</li>
+            <li>Størrelse: {data.size} cl</li>
+            <li>Alkoholprocent: {data.procent} %</li>
+          </ul>
+          <p>
+            Allergener: <strong>{data.allergener}</strong>
+          </p>
+          <p>Best before datoen er {data.best_before}.</p>
+          <p>
+            <strong>NB:</strong> Fri fragt ved køb over 499 kr. ellers pålægges
+            der 59 kr. i fragt.
+          </p>
+        </div>
+      </details>
+    </article>
+  )
+}
 
 <style>
+  .product-description {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
 
-</style> -->
+  .beskrivelse {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .untappd-rating {
+    font-weight: 500;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--darkest_green);
+  }
+
+  .p-details {
+    border: 1px solid var(--darkest_green);
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .p-details summary {
+    padding: 0.85rem 1rem;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    color: var(--darkest_green);
+  }
+
+  .p-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .p-details summary::after {
+    content: url(../assets/Arrow.svg);
+    font-size: 1rem;
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .p-details[open] summary::after {
+    transform: rotate(180deg);
+  }
+
+  .details-content {
+    padding: 0.75rem 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--darkest_green);
+  }
+
+  .details-content ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .details-content p {
+    margin: 0;
+  }
+
+  @media (min-width: 800px) {
+    .product-description {
+      padding-top: 1.5rem;
+    }
+    .description {
+      font-size: 1rem;
+    }
+
+    .untappd-rating {
+      font-size: 1rem;
+    }
+
+    .details-content {
+      font-size: 1rem;
+    }
+  }
+</style>
